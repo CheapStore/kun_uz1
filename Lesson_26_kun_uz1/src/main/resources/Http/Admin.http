@@ -1,0 +1,11 @@
+### init admin
+GET localhost:808/init/admin
+
+### init login
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@mail.ru",
+  "password": "12345"
+}
