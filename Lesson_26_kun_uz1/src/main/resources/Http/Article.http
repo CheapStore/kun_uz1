@@ -1,0 +1,26 @@
+
+
+### init login
+POST localhost:8080/article/create
+Content-Type: application/json
+
+{
+  "articleName": "cпорт24",
+  "language": "nameRU",
+  "visible": true
+}
+
+
+### update Article
+PUT localhost:8080/article/6
+Content-Type: application/json
+
+{
+  "visible": false,
+  "articleName": "Xabar24",
+  "language": "nameEN"
+}
+
+
+### getList Article
+GET localhost:8080/article/language?language=nameUedrfg
