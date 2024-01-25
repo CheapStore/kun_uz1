@@ -6,6 +6,9 @@ import com.example.Lesson_26_kun_uz1.Enums.Language;
 import com.example.Lesson_26_kun_uz1.Exp.AppBadException;
 import com.example.Lesson_26_kun_uz1.Repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,8 +26,10 @@ public class ArticleService {
     public ArticleDTO create(ArticleDTO DTO) {
         ArticleEntity article = new ArticleEntity();
         article.setArticleName(DTO.getArticleName());
-        article.setLanguage(DTO.getLanguage());
         article.setCreatedDate(LocalDateTime.now());
+        article.setNameEn(DTO.getNameEn());
+        article.setNameUz(DTO.getNameUz());
+        article.setNameRu(DTO.getNameRu());
         article.setVisible(true);
         article.setUpdatedDate(DTO.getUpdatedDate());
         articleRepository.save(article);
@@ -41,7 +46,9 @@ public class ArticleService {
         ArticleEntity entity = byId.get();
         entity.setUpdatedDate(LocalDateTime.now());
         entity.setArticleName(articleDTO.getArticleName());
-        entity.setLanguage(articleDTO.getLanguage());
+        entity.setNameRu(articleDTO.getNameRu());
+        entity.setNameUz(articleDTO.getNameUz());
+        entity.setNameEn(articleDTO.getNameEn());
         entity.setVisible(articleDTO.getVisible());
         articleRepository.save(entity);
         return true;
@@ -50,27 +57,53 @@ public class ArticleService {
     }
 
     public Boolean delete(Integer id) {
-        articleRepository.deleteById(id);
+
+        Integer i = articleRepository.deleteUpdate(id);
+        if (i == 0) {
+            return false;
+        }
         return true;
     }
 
-    public List<Object> getlist(String language) {
-        if (language.equals(Language.nameEN.toString()) || language.equals(Language.nameRU.toString()) || language.equals(Language.nameUZ.toString())) {
-            Language language1 = Language.valueOf(language);
-            List<ArticleEntity> byLanguage = articleRepository.findByLanguage(language1);
-            List<Object> list1 = new LinkedList<>();
-            for (ArticleEntity o : byLanguage) {
-                List<Object> list = new LinkedList<>();
-                list.add("id:" + o.getId());
-                list.add("ArticleName:" + o.getArticleName());
-                list.add("Visible:" + o.getVisible());
-                list1.add(list);
+    public List<ArticleDTO> getlistLangue(Language language) {
+        Iterable<ArticleEntity> all = articleRepository.findAll();
+        List<ArticleDTO> articleDTOS = new ArrayList<>();
+        for (ArticleEntity articleEntity : all) {
+            ArticleDTO articleDTO = new ArticleDTO();
+            articleDTO.setId(articleEntity.getId());
+            switch (language) {
+                case UZ -> articleDTO.setName(articleEntity.getNameUz());
+                case RU -> articleDTO.setName(articleEntity.getNameRu());
+                default -> articleDTO.setName(articleEntity.getNameEn());
             }
-            return list1;
-        } else {
-            throw new AppBadException("language wrong!!!");
+            articleDTOS.add(articleDTO);
         }
 
+        return articleDTOS;
 
+    }
+
+    public Page<ArticleDTO> pagination(Integer size, Integer page) {
+        PageRequest pageable = PageRequest.of(page - 1, size);
+        Page<ArticleEntity> studentPage = articleRepository.findAll(pageable);
+        List<ArticleEntity> entityList = studentPage.getContent();
+        long totalElements = studentPage.getTotalElements();
+        List<ArticleDTO> dtoList = new ArrayList<>();
+
+        for (ArticleEntity courseEntity : entityList) {
+            dtoList.add(dto(courseEntity));
+        }
+        return new PageImpl<>(dtoList, pageable, totalElements);
+    }
+
+
+    public ArticleDTO dto(ArticleEntity entity) {
+        ArticleDTO dto = new ArticleDTO();
+        dto.setId(entity.getId());
+        dto.setArticleName(entity.getArticleName());
+        dto.setVisible(entity.getVisible());
+        dto.setUpdatedDate(entity.getUpdatedDate());
+
+        return dto;
     }
 }

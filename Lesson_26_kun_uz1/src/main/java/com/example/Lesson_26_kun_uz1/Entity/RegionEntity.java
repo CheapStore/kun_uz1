@@ -2,17 +2,20 @@ package com.example.Lesson_26_kun_uz1.Entity;
 
 import com.example.Lesson_26_kun_uz1.Enums.Language;
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Service;
 
 @Setter
 @Getter
 @Entity
+@Table(name = "region")
+public class RegionEntity extends BaseEntity {
 
-@Table(name = "article")
-public class ArticleEntity extends BaseEntity {
-
-
+    @GeneratedValue
+    @Column(name = "order_number")
+    private Integer orderNumber;
 
     @Column(name = "Name_Uz")
     private String nameUz;
@@ -22,9 +25,4 @@ public class ArticleEntity extends BaseEntity {
 
     @Column(name = "Name_En")
     private String nameEn;
-
-    @Column(name = "article_name")
-    private String articleName;
-
-
 }

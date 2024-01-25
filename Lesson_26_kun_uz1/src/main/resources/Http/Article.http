@@ -5,22 +5,30 @@ POST localhost:8080/article/create
 Content-Type: application/json
 
 {
-  "articleName": "cпорт24",
-  "language": "nameRU",
+  "articleName": "Sport",
+  "nameUz": "sportUz",
+  "nameEn": "sportEn",
+  "nameRu": "sportRu",
   "visible": true
 }
 
 
 ### update Article
-PUT localhost:8080/article/6
+PUT localhost:8080/article/1
 Content-Type: application/json
 
 {
   "visible": false,
   "articleName": "Xabar24",
-  "language": "nameEN"
+  "nameUz": "sportUz",
+  "nameEn": "sportEn",
+  "nameRu": "sportRu"
 }
 
 
 ### getList Article
-GET localhost:8080/article/language?language=nameUedrfg
+GET localhost:8080/article/language?language=uz
+
+
+### getList Article
+DELETE localhost:8080/article/1

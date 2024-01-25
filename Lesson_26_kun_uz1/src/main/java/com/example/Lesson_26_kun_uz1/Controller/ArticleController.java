@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
+
     @Autowired
     public ArticleService articleService;
 
@@ -36,8 +37,14 @@ public class ArticleController {
     }
 
     @GetMapping("/language")
-    public ResponseEntity<List<Object>>getList(@RequestParam(value = "language")String language){
-       return ResponseEntity.ok(articleService.getlist(language));
+    public ResponseEntity<List<ArticleDTO>>getListLanguage(@RequestParam(value = "language",defaultValue ="UZ")Language language){
+       return ResponseEntity.ok(articleService.getlistLangue(language));
+    }
+
+    @GetMapping("/Pagination")
+    private ResponseEntity<?>pagination(@RequestParam(value = "size")Integer size,
+                                        @RequestParam(value = "page")Integer page){
+        return  ResponseEntity.ok(articleService.pagination(size,page));
     }
 
 
