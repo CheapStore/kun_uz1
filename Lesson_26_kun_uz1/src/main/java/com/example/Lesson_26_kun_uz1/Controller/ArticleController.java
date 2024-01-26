@@ -1,9 +1,13 @@
 package com.example.Lesson_26_kun_uz1.Controller;
 
 import com.example.Lesson_26_kun_uz1.DTO.ArticleDTO;
+import com.example.Lesson_26_kun_uz1.DTO.JwtDTO;
 import com.example.Lesson_26_kun_uz1.Enums.Language;
+import com.example.Lesson_26_kun_uz1.Enums.ProfileRole;
 import com.example.Lesson_26_kun_uz1.Service.ArticleService;
+import com.example.Lesson_26_kun_uz1.Util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,34 +21,56 @@ public class ArticleController {
     public ArticleService articleService;
 
     @PostMapping("/create")
-    public ResponseEntity<ArticleDTO>create(@RequestBody ArticleDTO articleDTO){
-        return  ResponseEntity.ok(articleService.create(articleDTO));
+    public ResponseEntity<ArticleDTO> create(@RequestBody ArticleDTO articleDTO,
+                                             @RequestHeader(value = "Authorization") String jwt) {
+        JwtDTO jwtUtil = JWTUtil.decode(jwt);
+        if (!jwtUtil.getRole().equals(ProfileRole.ADMIN)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        return ResponseEntity.ok(articleService.create(articleDTO));
 
     }
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<Boolean> update(@PathVariable(value = "id")Integer id,
-                                          @RequestBody ArticleDTO articleDTO){
+    public ResponseEntity<Boolean> update(@PathVariable(value = "id") Integer id,
+                                          @RequestBody ArticleDTO articleDTO,
+                                          @RequestHeader(value = "Authorization") String jwt) {
+        JwtDTO jwtUtil = JWTUtil.decode(jwt);
 
-        return  ResponseEntity.ok(articleService.update(id,articleDTO));
+        if (!jwtUtil.getRole().equals(ProfileRole.ADMIN)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
+        return ResponseEntity.ok(articleService.update(id, articleDTO));
 
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean>delete(@PathVariable(value = "id")Integer id){
-        return  ResponseEntity.ok(articleService.delete(id));
+    public ResponseEntity<Boolean> delete(@PathVariable(value = "id") Integer id,
+                                          @RequestHeader(value = "Authorization") String jwt) {
+        JwtDTO jwtUtil = JWTUtil.decode(jwt);
+
+        if (!jwtUtil.getRole().equals(ProfileRole.ADMIN)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        return ResponseEntity.ok(articleService.delete(id));
     }
 
     @GetMapping("/language")
-    public ResponseEntity<List<ArticleDTO>>getListLanguage(@RequestParam(value = "language",defaultValue ="UZ")Language language){
-       return ResponseEntity.ok(articleService.getlistLangue(language));
+    public ResponseEntity<List<ArticleDTO>> getListLanguage(@RequestParam(value = "language", defaultValue = "UZ") Language language) {
+        return ResponseEntity.ok(articleService.getlistLangue(language));
     }
 
     @GetMapping("/Pagination")
-    private ResponseEntity<?>pagination(@RequestParam(value = "size")Integer size,
-                                        @RequestParam(value = "page")Integer page){
-        return  ResponseEntity.ok(articleService.pagination(size,page));
+    private ResponseEntity<?> pagination(@RequestParam(value = "size") Integer size,
+                                         @RequestParam(value = "page") Integer page,
+                                         @RequestHeader(value = "Authorization") String jwt) {
+        JwtDTO jwtUtil = JWTUtil.decode(jwt);
+        if (!jwtUtil.getRole().equals(ProfileRole.ADMIN)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        return ResponseEntity.ok(articleService.pagination(size, page));
     }
 
 

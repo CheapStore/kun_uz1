@@ -3,12 +3,13 @@
 ### init login
 POST localhost:8080/article/create
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYxNzkyNDYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYyNjU2NDYsImlzcyI6Ikt1blV6VGVzdCJ9.chJYuU2gon06mkwn5ERGri5e7I-PGmHOutGHvGHYk_QfeECxBmj9kgvOcqL-iQt7t5ec0Yt0YHinb-GNfMlxvA
 
 {
-  "articleName": "Sport",
-  "nameUz": "sportUz",
-  "nameEn": "sportEn",
-  "nameRu": "sportRu",
+  "articleName": "articleName",
+  "nameUz": "articleNameUz",
+  "nameEn": "articleNameEn",
+  "nameRu": "articleNameRu",
   "visible": true
 }
 
@@ -16,6 +17,8 @@ Content-Type: application/json
 ### update Article
 PUT localhost:8080/article/1
 Content-Type: application/json
+Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYxNzkyNDYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYyNjU2NDYsImlzcyI6Ikt1blV6VGVzdCJ9.chJYuU2gon06mkwn5ERGri5e7I-PGmHOutGHvGHYk_QfeECxBmj9kgvOcqL-iQt7t5ec0Yt0YHinb-GNfMlxvA
+
 
 {
   "visible": false,
@@ -27,8 +30,13 @@ Content-Type: application/json
 
 
 ### getList Article
-GET localhost:8080/article/language?language=uz
+GET localhost:8080/article/language?language=UZ
 
 
 ### getList Article
 DELETE localhost:8080/article/1
+Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYxNzkyNDYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYyNjU2NDYsImlzcyI6Ikt1blV6VGVzdCJ9.chJYuU2gon06mkwn5ERGri5e7I-PGmHOutGHvGHYk_QfeECxBmj9kgvOcqL-iQt7t5ec0Yt0YHinb-GNfMlxvA
+
+### getList Article
+GET localhost:8080/article/Pagination?size=1&page=1
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYxNzkyNDYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYyNjU2NDYsImlzcyI6Ikt1blV6VGVzdCJ9.chJYuU2gon06mkwn5ERGri5e7I-PGmHOutGHvGHYk_QfeECxBmj9kgvOcqL-iQt7t5ec0Yt0YHinb-GNfMlxvA

@@ -1,30 +1,37 @@
 ### create region
 POST http://localhost:8080/region/creat
 Content-Type: application/json
+Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYxNzkyNDYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYyNjU2NDYsImlzcyI6Ikt1blV6VGVzdCJ9.chJYuU2gon06mkwn5ERGri5e7I-PGmHOutGHvGHYk_QfeECxBmj9kgvOcqL-iQt7t5ec0Yt0YHinb-GNfMlxvA
+
 
 {
   "visible": false,
   "orderNumber": 2,
-  "nameUz": "Toshkent UZ",
-  "nameRu": "Toshkent RU",
-  "nameEn": "Toshkent EN"
+  "nameUz": "Samarqand UZ",
+  "nameRu": "Samarqand RU",
+  "nameEn": "Samarqand EN"
 }
 
 
 
 ### update region
-PUT localhost:8080/region/2
+PUT localhost:8080/region/1
 Content-Type: application/json
+Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYxNzkyNDYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYyNjU2NDYsImlzcyI6Ikt1blV6VGVzdCJ9.chJYuU2gon06mkwn5ERGri5e7I-PGmHOutGHvGHYk_QfeECxBmj9kgvOcqL-iQt7t5ec0Yt0YHinb-GNfMlxvA
 
 {
-  "visible": false,
-  "orderNumber": 2,
-  "nameUz": "nameRU"
+  "visible": true,
+  "orderNumber": 3,
+  "nameUz": "Shahar UZ",
+  "nameRu": "XorShaharazm RU",
+  "nameEn": "Shahar En"
 
 }
 
 ### delete  region
-DELETE localhost:8080/region/1
+DELETE localhost:8080/region/5
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYxNzkyNDYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYyNjU2NDYsImlzcyI6Ikt1blV6VGVzdCJ9.chJYuU2gon06mkwn5ERGri5e7I-PGmHOutGHvGHYk_QfeECxBmj9kgvOcqL-iQt7t5ec0Yt0YHinb-GNfMlxvA
 
 ### get  region
-GET localhost:8080/region/language?lan=UZ
+GET localhost:8080/region/language?lan=RU
+Authorization:eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYxNzkyNDYsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYyNjU2NDYsImlzcyI6Ikt1blV6VGVzdCJ9.chJYuU2gon06mkwn5ERGri5e7I-PGmHOutGHvGHYk_QfeECxBmj9kgvOcqL-iQt7t5ec0Yt0YHinb-GNfMlxvA

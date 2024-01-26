@@ -45,6 +45,8 @@ public class RegionService {
         regionEntity.setOrderNumber(dto.getOrderNumber());
         regionEntity.setVisible(dto.getVisible());
         regionEntity.setNameUz(dto.getNameUz());
+        regionEntity.setNameEn(dto.getNameEn());
+        regionEntity.setNameRu(dto.getNameRu());
         regionEntity.setUpdatedDate(LocalDateTime.now());
         repository.save(regionEntity);
         return true;
@@ -59,16 +61,19 @@ public class RegionService {
         return delete != 0;
     }
 
-    public List<RegionDTO> getLanguage(Language language) {
+    public List<RegionDTO> getLanguage(String language) {
+
+        Language language1=Language.valueOf(language);
         Iterable<RegionEntity> all = repository.findAll();
         List<RegionDTO> articleDTOS = new ArrayList<>();
         for (RegionEntity regionEntity : all) {
             RegionDTO regionDTO = new RegionDTO();
             regionDTO.setId(regionDTO.getId());
-            switch (language) {
+            switch (language1) {
                 case UZ -> regionDTO.setName(regionEntity.getNameUz());
                 case RU -> regionDTO.setName(regionEntity.getNameRu());
-                default -> regionDTO.setName(regionEntity.getNameEn());
+                case EN -> regionDTO.setName(regionEntity.getNameEn());
+                default -> throw new AppBadException("Bunday tilda yo`q!!!");
             }
             articleDTOS.add(regionDTO);
         }
