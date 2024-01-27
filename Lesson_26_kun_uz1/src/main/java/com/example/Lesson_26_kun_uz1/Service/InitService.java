@@ -29,6 +29,7 @@ public class InitService {
         admin.setStatus(ProfileStatus.ACTIVE);
         admin.setRole(ProfileRole.ADMIN);
         admin.setPassword(MDUtil.encode("12345"));
+        admin.setPhone("853");
         profilerepository.save(admin);
     }
 

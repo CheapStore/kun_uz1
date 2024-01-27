@@ -23,12 +23,8 @@ public class ArticleController {
     @PostMapping("/create")
     public ResponseEntity<ArticleDTO> create(@RequestBody ArticleDTO articleDTO,
                                              @RequestHeader(value = "Authorization") String jwt) {
-        JwtDTO jwtUtil = JWTUtil.decode(jwt);
-        if (!jwtUtil.getRole().equals(ProfileRole.ADMIN)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-        return ResponseEntity.ok(articleService.create(articleDTO));
-
+        return JWTUtil.check(jwt) ? ResponseEntity.ok(articleService.create(articleDTO)) :
+                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
 
@@ -36,29 +32,20 @@ public class ArticleController {
     public ResponseEntity<Boolean> update(@PathVariable(value = "id") Integer id,
                                           @RequestBody ArticleDTO articleDTO,
                                           @RequestHeader(value = "Authorization") String jwt) {
-        JwtDTO jwtUtil = JWTUtil.decode(jwt);
-
-        if (!jwtUtil.getRole().equals(ProfileRole.ADMIN)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-
-        return ResponseEntity.ok(articleService.update(id, articleDTO));
-
+        return JWTUtil.check(jwt) ? ResponseEntity.ok(articleService.update(id, articleDTO)) :
+                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable(value = "id") Integer id,
                                           @RequestHeader(value = "Authorization") String jwt) {
-        JwtDTO jwtUtil = JWTUtil.decode(jwt);
-
-        if (!jwtUtil.getRole().equals(ProfileRole.ADMIN)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-        return ResponseEntity.ok(articleService.delete(id));
+        return JWTUtil.check(jwt) ? ResponseEntity.ok(articleService.delete(id)) :
+                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
     @GetMapping("/language")
     public ResponseEntity<List<ArticleDTO>> getListLanguage(@RequestParam(value = "language", defaultValue = "UZ") Language language) {
+//        return null;
         return ResponseEntity.ok(articleService.getlistLangue(language));
     }
 
@@ -66,12 +53,13 @@ public class ArticleController {
     private ResponseEntity<?> pagination(@RequestParam(value = "size") Integer size,
                                          @RequestParam(value = "page") Integer page,
                                          @RequestHeader(value = "Authorization") String jwt) {
-        JwtDTO jwtUtil = JWTUtil.decode(jwt);
-        if (!jwtUtil.getRole().equals(ProfileRole.ADMIN)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-        return ResponseEntity.ok(articleService.pagination(size, page));
+        return JWTUtil.check(jwt) ? ResponseEntity.ok(articleService.pagination(size, page)) :
+                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
+
+
+
+
 
 
 }

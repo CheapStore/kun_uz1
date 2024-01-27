@@ -1,37 +1,39 @@
-### create region
-POST http://localhost:8080/region/creat
-Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYyNzM2MjAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYzNjAwMjAsImlzcyI6Ikt1blV6VGVzdCJ9.QrWzpJ4qxbFkLAtpHA3Av1LE31DxX4ofJTl-iN-8eE6ov7ZJUkQhX1aTaFeipf03EAdFnx1cDyNF8ILEqhiPaA
-
-
-{
-  "visible": false,
-  "orderNumber": 2,
-  "nameUz": "Samarqand UZ",
-  "nameRu": "Samarqand RU",
-  "nameEn": "Samarqand EN"
-}
-
-
-
-### update region
-PUT localhost:8080/region/1
+### create Profile
+POST localhost:8080/profile/crate
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYyNzM2MjAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYzNjAwMjAsImlzcyI6Ikt1blV6VGVzdCJ9.QrWzpJ4qxbFkLAtpHA3Av1LE31DxX4ofJTl-iN-8eE6ov7ZJUkQhX1aTaFeipf03EAdFnx1cDyNF8ILEqhiPaA
 
 {
-  "visible": true,
-  "orderNumber": 3,
-  "nameUz": "Shahar UZ",
-  "nameRu": "Xorazm RU",
-  "nameEn": "Shahar En"
-
+  "password": "1213",
+  "phone": "123",
+  "name": "Ali1",
+  "surname": "Vali1",
+  "status": "ACTIVE",
+  "role": "USER",
+  "email": "email"
 }
 
-### delete  region
-DELETE localhost:8080/region/5
+
+### update(id) Profile
+PUT localhost:8080/profile/3
+Content-Type: application/json
 Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYyNzM2MjAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYzNjAwMjAsImlzcyI6Ikt1blV6VGVzdCJ9.QrWzpJ4qxbFkLAtpHA3Av1LE31DxX4ofJTl-iN-8eE6ov7ZJUkQhX1aTaFeipf03EAdFnx1cDyNF8ILEqhiPaA
 
-### get  region
-GET localhost:8080/region/language?lan=RU
+{
+  "role": "ADMIN",
+  "email": "@email",
+  "status": "BLOCK",
+  "name": "Karim"
+}
+
+### getList(size,page) Profile
+GET localhost:8080/profile/pagination?size=1&page=3
 Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYyNzM2MjAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYzNjAwMjAsImlzcyI6Ikt1blV6VGVzdCJ9.QrWzpJ4qxbFkLAtpHA3Av1LE31DxX4ofJTl-iN-8eE6ov7ZJUkQhX1aTaFeipf03EAdFnx1cDyNF8ILEqhiPaA
+
+### filter(size,page) Profile
+POST localhost:8080/profile/filter?size=1&page=2
+Content-Type: application/json
+
+{
+  "role": "ADMIN"
+}

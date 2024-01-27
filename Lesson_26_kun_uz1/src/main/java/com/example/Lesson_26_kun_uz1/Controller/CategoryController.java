@@ -21,11 +21,8 @@ public class CategoryController {
     @PostMapping("/create")
     public ResponseEntity<CategoryCreateDTO> create(@RequestBody CategoryCreateDTO dto,
                                                     @RequestHeader(value = "Authorization") String jwt) {
-        JwtDTO jwtDTO = JWTUtil.decode(jwt);
-        if (!jwtDTO.getRole().equals(ProfileRole.ADMIN)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-        return ResponseEntity.ok(categoryService.create(dto));
+        return JWTUtil.check(jwt) ? ResponseEntity.ok(categoryService.create(dto)) :
+                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
 
     }
 
@@ -33,11 +30,8 @@ public class CategoryController {
     public ResponseEntity<?> update(@PathVariable(value = "id") Integer id,
                                     @RequestBody CategoryCreateDTO categoryCreateDTO,
                                     @RequestHeader(value = "Authorization") String jwt) {
-        JwtDTO jwtDTO = JWTUtil.decode(jwt);
-        if (!jwtDTO.getRole().equals(ProfileRole.ADMIN)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-        return ResponseEntity.ok(categoryService.update(id, categoryCreateDTO));
+        return JWTUtil.check(jwt) ? ResponseEntity.ok(categoryService.update(id, categoryCreateDTO)) :
+                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
 
     }
 
@@ -45,22 +39,16 @@ public class CategoryController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id,
                                     @RequestHeader(value = "Authorization") String jwt) {
-        JwtDTO jwtDTO = JWTUtil.decode(jwt);
-        if (!jwtDTO.getRole().equals(ProfileRole.ADMIN)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-        return ResponseEntity.ok(categoryService.delete(id));
+        return JWTUtil.check(jwt) ? ResponseEntity.ok(categoryService.delete(id)) :
+                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
-   @GetMapping("/Pagination")
+    @GetMapping("/Pagination")
     private ResponseEntity<?> pagination(@RequestParam(value = "size") Integer size,
                                          @RequestParam(value = "page") Integer page,
                                          @RequestHeader(value = "Authorization") String jwt) {
-        JwtDTO jwtUtil = JWTUtil.decode(jwt);
-        if (!jwtUtil.getRole().equals(ProfileRole.ADMIN)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-        return ResponseEntity.ok(categoryService.pagination(size, page));
+        return JWTUtil.check(jwt) ? ResponseEntity.ok(categoryService.pagination(size, page)) :
+                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
 
@@ -69,7 +57,6 @@ public class CategoryController {
 
         return ResponseEntity.ok(categoryService.getLanguage(language));
     }
-
 
 
 }

@@ -46,7 +46,13 @@ public class JWTUtil {
 
         return new JwtDTO(id, profileRole);
     }
-
+    public static Boolean check(String jwt) {
+        JwtDTO jwtUtil = JWTUtil.decode(jwt);
+        if (!jwtUtil.getRole().equals(ProfileRole.ADMIN)) {
+            return false;
+        }
+        return true;
+    }
 
 
 }

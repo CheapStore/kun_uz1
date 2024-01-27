@@ -24,11 +24,8 @@ public class RegionController {
     @PostMapping("/creat")
     public ResponseEntity<RegionEntity> create(@RequestBody RegionDTO dto,
                                                @RequestHeader(value = "Authorization") String jwt) {
-        JwtDTO jwtUtil = JWTUtil.decode(jwt);
-        if (!jwtUtil.getRole().equals(ProfileRole.ADMIN)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-        return ResponseEntity.ok(service.create(dto));
+        return JWTUtil.check(jwt) ? ResponseEntity.ok(service.create(dto)) :
+                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
 
@@ -36,23 +33,16 @@ public class RegionController {
     public ResponseEntity<Boolean> update(@PathVariable(value = "id") Integer id,
                                           @RequestBody RegionDTO dto,
                                           @RequestHeader(value = "Authorization") String jwt) {
-
-        JwtDTO jwtUtil = JWTUtil.decode(jwt);
-        if (!jwtUtil.getRole().equals(ProfileRole.ADMIN)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-        return ResponseEntity.ok(service.update(id, dto));
+        return JWTUtil.check(jwt) ? ResponseEntity.ok(service.update(id, dto)) :
+                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable(value = "id") Integer id,
                                           @RequestHeader(value = "Authorization") String jwt) {
-        JwtDTO jwtUtil = JWTUtil.decode(jwt);
-        if (!jwtUtil.getRole().equals(ProfileRole.ADMIN)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-        return ResponseEntity.ok(service.delete(id));
+        return JWTUtil.check(jwt) ? ResponseEntity.ok(service.delete(id)) :
+                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
 
@@ -65,11 +55,8 @@ public class RegionController {
     private ResponseEntity<?> pagination(@RequestParam(value = "size") Integer size,
                                          @RequestParam(value = "page") Integer page,
                                          @RequestHeader(value = "Authorization") String jwt) {
-        JwtDTO jwtUtil = JWTUtil.decode(jwt);
-        if (!jwtUtil.getRole().equals(ProfileRole.ADMIN)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-        return ResponseEntity.ok(service.pagination(size, page));
+        return JWTUtil.check(jwt) ? ResponseEntity.ok(service.pagination(size, page)) :
+                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
 }
