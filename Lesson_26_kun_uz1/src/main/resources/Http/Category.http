@@ -1,7 +1,7 @@
 ### create Category
-POST localhost:8080/category/create
+POST localhost:8080/category/adm/create
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY0MjYwNjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1MTI0NjgsImlzcyI6Ikt1blV6VGVzdCJ9.DON9CpVvch12XEfJ0reGEHBmvJb6uOm_o5Fz3nXTH092LK80yio2cp41CW867JIg861i9cSFFokP-d3Sj5o2Ng
+Authorization: Baarer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY1MzM5NzAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY2MjAzNzAsImlzcyI6Ikt1blV6VGVzdCJ9.PMexRaFU-CUc2m9i0Ltl3fUxxBxacvtDHPEoqDzvvAhL0EjU8ClsgwoqKTYT_GzugXWkVDb62xslSdI87t4-Sw
 
 
 {
@@ -13,9 +13,9 @@ Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY0MjYwNjgsImlkIjoxLCJyb2xlIjoi
 
 
 ### update(id) Category
-PUT localhost:8080/category/1
+PUT localhost:8080/category/adm/1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY0MjYwNjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1MTI0NjgsImlzcyI6Ikt1blV6VGVzdCJ9.DON9CpVvch12XEfJ0reGEHBmvJb6uOm_o5Fz3nXTH092LK80yio2cp41CW867JIg861i9cSFFokP-d3Sj5o2Ng
+Authorization: Baarer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY1MzM5NzAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY2MjAzNzAsImlzcyI6Ikt1blV6VGVzdCJ9.PMexRaFU-CUc2m9i0Ltl3fUxxBxacvtDHPEoqDzvvAhL0EjU8ClsgwoqKTYT_GzugXWkVDb62xslSdI87t4-Sw
 
 {
   "orderNumber": 2,
@@ -26,12 +26,12 @@ Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY0MjYwNjgsImlkIjoxLCJyb2xlIjoi
 
 ### delete (id) Category
 
-DELETE localhost:8080/category/1
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY0MjYwNjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1MTI0NjgsImlzcyI6Ikt1blV6VGVzdCJ9.DON9CpVvch12XEfJ0reGEHBmvJb6uOm_o5Fz3nXTH092LK80yio2cp41CW867JIg861i9cSFFokP-d3Sj5o2Ng
+DELETE localhost:8080/category/adm/1
+Authorization: Baarer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY1MzM5NzAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY2MjAzNzAsImlzcyI6Ikt1blV6VGVzdCJ9.PMexRaFU-CUc2m9i0Ltl3fUxxBxacvtDHPEoqDzvvAhL0EjU8ClsgwoqKTYT_GzugXWkVDb62xslSdI87t4-Sw
 
 ### get (order by orderNumber) Category
-GET localhost:8080/category/Pagination?page=1&size=1
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY0MjYwNjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1MTI0NjgsImlzcyI6Ikt1blV6VGVzdCJ9.DON9CpVvch12XEfJ0reGEHBmvJb6uOm_o5Fz3nXTH092LK80yio2cp41CW867JIg861i9cSFFokP-d3Sj5o2Ng
+GET localhost:8080/category/adm/Pagination?page=1&size=1
+Authorization: Baarer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY1MzM5NzAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY2MjAzNzAsImlzcyI6Ikt1blV6VGVzdCJ9.PMexRaFU-CUc2m9i0Ltl3fUxxBxacvtDHPEoqDzvvAhL0EjU8ClsgwoqKTYT_GzugXWkVDb62xslSdI87t4-Sw
 
 ### getLanguage (Language) Category
 GET localhost:8080/category/language?language=RU

@@ -10,8 +10,11 @@ import com.example.Lesson_26_kun_uz1.Repository.RegistrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.mail.*;
+import javax.mail.internet.MimeMessage;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.Random;
 
 @Service
@@ -21,13 +24,12 @@ public class RegistrationService {
 
     @Autowired
     private Profilerepository profilerepository;
+  private static   String email1 = "allayarovshahzodbekz@gmail.com";
+    private static String password = "kqvmpnebrzwmqowa";
 
-    public String register(RegistirationProfileDTO registirationProfileDTO) {
-        profilerepository.findByEmail(registirationProfileDTO.getEmail());
-//        Optional<ProfileEntity> byEmailOrPhone = profilerepository.findByEmailOrPhone(registirationProfileDTO.getEmail(), registirationProfileDTO.getPhone());
+    public String registerEmail(RegistirationProfileDTO registirationProfileDTO)  {
 
-//        if (byEmailOrPhone.isEmpty()) {
-            ProfileEntity profileEntity = new ProfileEntity();
+        ProfileEntity profileEntity = new ProfileEntity();
             profileEntity.setPassword(registirationProfileDTO.getPassword());
             profileEntity.setName(registirationProfileDTO.getName());
             profileEntity.setPhone(registirationProfileDTO.getPhone());
@@ -38,17 +40,59 @@ public class RegistrationService {
             profileEntity.setEmail(registirationProfileDTO.getEmail());
             profileEntity.setSms(password());
             repository.save(profileEntity);
-            return "Sms jo`natildi:";
-
-//        }else {
-//            throw new AppBadException("bunday profile bor!!!");
-//        }
 
 
+        try {
+            sendMail(profileEntity.getEmail(),profileEntity.getSms());
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+        return "Sms jo`natildi:";
 
 
     }
+    public String register(RegistirationProfileDTO registirationProfileDTO)  {
+        ProfileEntity profileEntity = new ProfileEntity();
+        profileEntity.setPassword(registirationProfileDTO.getPassword());
+        profileEntity.setName(registirationProfileDTO.getName());
+        profileEntity.setPhone(registirationProfileDTO.getPhone());
+        profileEntity.setSurname(registirationProfileDTO.getSurName());
+        profileEntity.setRole(ProfileRole.USER);
+        profileEntity.setStatus(ProfileStatus.BLOCK);
+        profileEntity.setCreatedDate(LocalDateTime.now());
+        profileEntity.setEmail(registirationProfileDTO.getEmail());
+        profileEntity.setSms(password());
+        repository.save(profileEntity);
+        return "Sms jo`natildi:";
+    }
 
+    public void sendMail(String email, String cod) throws MessagingException {
+        Session session = getSession(getProperties(), email1, password);
+        MimeMessage mimeMessage = new MimeMessage(session);
+        mimeMessage.setFrom(email1);
+        mimeMessage.setRecipients(Message.RecipientType.TO, email);
+        mimeMessage.setContent(cod, "text/plain");
+        mimeMessage.setSubject("codeuz");
+        Transport.send(mimeMessage);
+    }
+
+    public Session getSession(Properties properties, String email, String password) {
+        return Session.getDefaultInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(email, password);
+            }
+        });
+    }
+
+    public Properties getProperties() {
+        Properties properties = new Properties();
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.ssl.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+        return properties;
+    }
     public String password(){
         Random random=new Random();
         String parol="0123456789";
@@ -64,7 +108,7 @@ public class RegistrationService {
 
 
     public String updateStatus(String kod) {
-        Integer sms = profilerepository.sms(kod, ProfileStatus.ACTIVE);
+        Integer sms = profilerepository.sms(kod);
         if (sms==1){
             return "Ro`yxatdan o`tdingiz";
         }

@@ -2,16 +2,28 @@
 GET localhost:808/init/admin
 
 ### init login
-POST http://localhost:8080/registration
+POST http://localhost:8080/registration/create
 Content-Type: application/json
 
 {
-  "name": "Farxod1",
-  "surName": "Farxodovich1",
-  "password": "12345",
-  "email": "@123",
-  "phone": "+998941234567"
+  "name": "Islom",
+  "surName": "Akmalov",
+  "password": "0000",
+  "email": "@islomAkmalov",
+  "phone": "9944"
 }
 ### init login
 
-POST http://localhost:8080/registration/sms?kod=855
+POST http://localhost:8080/registration/sms?kod=6573
+
+### init EmailLogin
+POST http://localhost:8080/registration/email
+Content-Type: application/json
+
+{
+  "name": "sd",
+  "surName": "sd",
+  "password": "sd",
+  "email": "@husenteshayev",
+  "phone": ""
+}

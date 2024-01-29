@@ -25,12 +25,11 @@ public class ProfileController {
     @Autowired
     private ProfileService profileService;
 
-    @PostMapping("/crate")
+    @PostMapping("/adm/crate")
     public ResponseEntity<?> create(@RequestBody CreateProfileDTO dto,
-                                    @RequestHeader(value = "Authorization") String jwt) {
-        return JWTUtil.check(jwt) ? ResponseEntity.ok(profileService.create(dto)) :
-                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-
+                                    HttpServletRequest request) {
+        HttpRequestUTIL.getProfileId(request, ProfileRole.ADMIN);
+        return  ResponseEntity.ok(profileService.create(dto));
     }
 
 //    Integer id = (Integer) request.getAttribute("id");
@@ -41,26 +40,23 @@ public class ProfileController {
 //    }
 
 
-    @PutMapping("/{id}")
+    @PutMapping("/adm/{id}")
     public ResponseEntity<?> update(
             @RequestHeader(value = "Authorization") String jwt,
             @PathVariable(value = "id") Integer id,
-            @RequestBody UpdateProfileDTO dto) {
-
-        return JWTUtil.check(jwt) ? ResponseEntity.ok(profileService.update(id, dto)) :
-                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-
+            @RequestBody UpdateProfileDTO dto,
+            HttpServletRequest request) {
+        HttpRequestUTIL.getProfileId(request, ProfileRole.ADMIN);
+        return ResponseEntity.ok(profileService.update(id, dto));
     }
 
 
-    @GetMapping("/pagination")
+    @GetMapping("/adm/pagination")
     public ResponseEntity<PageImpl<ProfileDTO>> getList(@RequestParam(value = "size", defaultValue = "1") Integer size,
                                                         @RequestParam(value = "page", defaultValue = "1") Integer page,
-                                                        @RequestHeader(value = "Authorization") String jwt) {
-        return JWTUtil.check(jwt) ? ResponseEntity.ok(profileService.getList(size, page)) :
-                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-
-
+                                                        HttpServletRequest request) {
+        HttpRequestUTIL.getProfileId(request,ProfileRole.ADMIN);
+        return  ResponseEntity.ok(profileService.getList(size, page));
     }
 
     @PostMapping("/filter")
@@ -68,21 +64,14 @@ public class ProfileController {
                                                        @RequestParam(value = "size", defaultValue = "1") Integer size,
                                                        @RequestBody() FilterDTO filter
     ) {
-
-
         return ResponseEntity.ok(profileService.filter(page, size, filter));
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<?> update(@RequestHeader(value = "Authorization") String jwt,
-                                    @RequestBody ProfileDTO profileDTO,
+    @PutMapping("/adm/update")
+    public ResponseEntity<?> update(@RequestBody ProfileDTO profileDTO,
                                     HttpServletRequest request) {
-        Integer id = HttpRequestUTIL.getProfileId(request);
-
-//        return ResponseEntity.ok(profileService.updateDetail(jwtDTO.getId(), profileDTO));
+        Integer id = HttpRequestUTIL.getProfileId(request,ProfileRole.ADMIN);
         return ResponseEntity.ok(profileService.updateDetail(id, profileDTO));
-
-
     }
 
 

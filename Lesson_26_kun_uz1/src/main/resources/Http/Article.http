@@ -1,23 +1,23 @@
 
 
 ### init login
-POST localhost:8080/article/create
+POST localhost:8080/article/adm/create
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY0MjYwNjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1MTI0NjgsImlzcyI6Ikt1blV6VGVzdCJ9.DON9CpVvch12XEfJ0reGEHBmvJb6uOm_o5Fz3nXTH092LK80yio2cp41CW867JIg861i9cSFFokP-d3Sj5o2Ng
+Authorization: Baarer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY1MzM5NzAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY2MjAzNzAsImlzcyI6Ikt1blV6VGVzdCJ9.PMexRaFU-CUc2m9i0Ltl3fUxxBxacvtDHPEoqDzvvAhL0EjU8ClsgwoqKTYT_GzugXWkVDb62xslSdI87t4-Sw
 
 {
-  "articleName": "articleName",
-  "nameUz": "articleNameUz",
-  "nameEn": "articleNameEn",
-  "nameRu": "articleNameRu",
+  "articleName": "Name",
+  "nameUz": "NameUz",
+  "nameEn": "NameEn",
+  "nameRu": "NameRu",
   "visible": true
 }
 
 
 ### update Article
-PUT localhost:8080/article/1
+PUT localhost:8080/article/adm/1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY0MjYwNjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1MTI0NjgsImlzcyI6Ikt1blV6VGVzdCJ9.DON9CpVvch12XEfJ0reGEHBmvJb6uOm_o5Fz3nXTH092LK80yio2cp41CW867JIg861i9cSFFokP-d3Sj5o2Ng
+Authorization: Baarer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY1MzM5NzAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY2MjAzNzAsImlzcyI6Ikt1blV6VGVzdCJ9.PMexRaFU-CUc2m9i0Ltl3fUxxBxacvtDHPEoqDzvvAhL0EjU8ClsgwoqKTYT_GzugXWkVDb62xslSdI87t4-Sw
 
 
 {
@@ -34,9 +34,9 @@ GET localhost:8080/article/language?language=UZ
 
 
 ### getList Article
-DELETE localhost:8080/article/1
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY0MjYwNjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1MTI0NjgsImlzcyI6Ikt1blV6VGVzdCJ9.DON9CpVvch12XEfJ0reGEHBmvJb6uOm_o5Fz3nXTH092LK80yio2cp41CW867JIg861i9cSFFokP-d3Sj5o2Ng
+DELETE localhost:8080/article/adm/1
+Authorization: Baarer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY1MzM5NzAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY2MjAzNzAsImlzcyI6Ikt1blV6VGVzdCJ9.PMexRaFU-CUc2m9i0Ltl3fUxxBxacvtDHPEoqDzvvAhL0EjU8ClsgwoqKTYT_GzugXWkVDb62xslSdI87t4-Sw
 
 ### getList Article
 GET localhost:8080/article/Pagination?size=1&page=1
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY0MjYwNjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1MTI0NjgsImlzcyI6Ikt1blV6VGVzdCJ9.DON9CpVvch12XEfJ0reGEHBmvJb6uOm_o5Fz3nXTH092LK80yio2cp41CW867JIg861i9cSFFokP-d3Sj5o2Ng
+Authorization: Baarer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY1MzM5NzAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY2MjAzNzAsImlzcyI6Ikt1blV6VGVzdCJ9.PMexRaFU-CUc2m9i0Ltl3fUxxBxacvtDHPEoqDzvvAhL0EjU8ClsgwoqKTYT_GzugXWkVDb62xslSdI87t4-Sw

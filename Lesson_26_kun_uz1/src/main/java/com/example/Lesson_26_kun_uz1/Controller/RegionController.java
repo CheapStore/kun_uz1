@@ -27,25 +27,27 @@ public class RegionController {
     public ResponseEntity<RegionEntity> create(@RequestBody RegionDTO dto,
                                                HttpServletRequest request) {
 
-        HttpRequestUTIL.getProfileId(request,ProfileRole.ADMIN,ProfileRole.MODERATOR);
+        HttpRequestUTIL.getProfileId(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(service.create(dto));
     }
 
 
-    @PutMapping("/{id}")
+    @PutMapping("/adm/{id}")
     public ResponseEntity<Boolean> update(@PathVariable(value = "id") Integer id,
                                           @RequestBody RegionDTO dto,
-                                          @RequestHeader(value = "Authorization") String jwt) {
-        return JWTUtil.check(jwt) ? ResponseEntity.ok(service.update(id, dto)) :
-                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+                                          HttpServletRequest request) {
+        HttpRequestUTIL.getProfileId(request, ProfileRole.ADMIN);
+
+        return  ResponseEntity.ok(service.update(id, dto));
     }
 
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/adm/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable(value = "id") Integer id,
-                                          @RequestHeader(value = "Authorization") String jwt) {
-        return JWTUtil.check(jwt) ? ResponseEntity.ok(service.delete(id)) :
-                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+                                          HttpServletRequest request) {
+
+        HttpRequestUTIL.getProfileId(request, ProfileRole.ADMIN);
+        return ResponseEntity.ok(service.delete(id));
     }
 
 
@@ -54,12 +56,13 @@ public class RegionController {
         return ResponseEntity.ok(service.getLanguage(language));
     }
 
-    @GetMapping("/Pagination")
+    @GetMapping("/adm/Pagination")
     private ResponseEntity<?> pagination(@RequestParam(value = "size") Integer size,
                                          @RequestParam(value = "page") Integer page,
-                                         @RequestHeader(value = "Authorization") String jwt) {
-        return JWTUtil.check(jwt) ? ResponseEntity.ok(service.pagination(size, page)) :
-                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+                                         HttpServletRequest request) {
+
+        HttpRequestUTIL.getProfileId(request, ProfileRole.ADMIN);
+        return ResponseEntity.ok(service.pagination(size, page)) ;
     }
 
 }

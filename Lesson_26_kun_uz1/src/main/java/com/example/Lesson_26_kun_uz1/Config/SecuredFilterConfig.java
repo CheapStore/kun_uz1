@@ -20,6 +20,14 @@ public class SecuredFilterConfig {
         bean.addUrlPatterns("/region/adm/**");
         bean.addUrlPatterns("/region/adm");
 
+        bean.addUrlPatterns("/profile/adm/*");
+        bean.addUrlPatterns("/profile/adm/**");
+        bean.addUrlPatterns("/profile/adm");
+
+        bean.addUrlPatterns("/article/adm/*");
+        bean.addUrlPatterns("/article/adm/**");
+        bean.addUrlPatterns("/article/adm");
+
         return bean;
     }
 

@@ -15,13 +15,16 @@ import java.util.Optional;
 
 public interface Profilerepository extends CrudRepository<ProfileEntity,Integer> {
 
-     Optional<ProfileEntity>findByEmail(String email);
-     Optional<ProfileEntity>findByEmailAndPassword(String email,String password);
+     Optional<ProfileEntity> findByEmail(String email);
+
+     Optional<ProfileEntity> findByEmailAndPassword(String email, String password);
+
      Page<ProfileEntity> findAll(Pageable pageable);
+
      @Transactional
      @Modifying
-     @Query("update ProfileEntity p set p.status=?2 where p.sms=?1")
-     Integer sms(String kod, ProfileStatus status);
+     @Query("update ProfileEntity p set p.status='ACTIVE' where p.sms=?1")
+     Integer sms(String kod);
 
 
 }
