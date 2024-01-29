@@ -1,7 +1,7 @@
 ### create Profile
 POST localhost:8080/profile/crate
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYyNzM2MjAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYzNjAwMjAsImlzcyI6Ikt1blV6VGVzdCJ9.QrWzpJ4qxbFkLAtpHA3Av1LE31DxX4ofJTl-iN-8eE6ov7ZJUkQhX1aTaFeipf03EAdFnx1cDyNF8ILEqhiPaA
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY0MjYwNjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1MTI0NjgsImlzcyI6Ikt1blV6VGVzdCJ9.DON9CpVvch12XEfJ0reGEHBmvJb6uOm_o5Fz3nXTH092LK80yio2cp41CW867JIg861i9cSFFokP-d3Sj5o2Ng
 
 {
   "password": "1213",
@@ -17,7 +17,7 @@ Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYyNzM2MjAsImlkIjoxLCJyb2xlIjoi
 ### update(id) Profile
 PUT localhost:8080/profile/3
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYyNzM2MjAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYzNjAwMjAsImlzcyI6Ikt1blV6VGVzdCJ9.QrWzpJ4qxbFkLAtpHA3Av1LE31DxX4ofJTl-iN-8eE6ov7ZJUkQhX1aTaFeipf03EAdFnx1cDyNF8ILEqhiPaA
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY0MjYwNjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1MTI0NjgsImlzcyI6Ikt1blV6VGVzdCJ9.DON9CpVvch12XEfJ0reGEHBmvJb6uOm_o5Fz3nXTH092LK80yio2cp41CW867JIg861i9cSFFokP-d3Sj5o2Ng
 
 {
   "role": "ADMIN",
@@ -28,7 +28,7 @@ Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYyNzM2MjAsImlkIjoxLCJyb2xlIjoi
 
 ### getList(size,page) Profile
 GET localhost:8080/profile/pagination?size=1&page=3
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDYyNzM2MjAsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDYzNjAwMjAsImlzcyI6Ikt1blV6VGVzdCJ9.QrWzpJ4qxbFkLAtpHA3Av1LE31DxX4ofJTl-iN-8eE6ov7ZJUkQhX1aTaFeipf03EAdFnx1cDyNF8ILEqhiPaA
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY0MjYwNjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1MTI0NjgsImlzcyI6Ikt1blV6VGVzdCJ9.DON9CpVvch12XEfJ0reGEHBmvJb6uOm_o5Fz3nXTH092LK80yio2cp41CW867JIg861i9cSFFokP-d3Sj5o2Ng
 
 ### filter(size,page) Profile
 POST localhost:8080/profile/filter?size=1&page=2
@@ -36,4 +36,15 @@ Content-Type: application/json
 
 {
   "role": "ADMIN"
+}
+
+### filter(size,page) Profile
+PUT localhost:8080/profile/update
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY0MjYwNjgsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDY1MTI0NjgsImlzcyI6Ikt1blV6VGVzdCJ9.DON9CpVvch12XEfJ0reGEHBmvJb6uOm_o5Fz3nXTH092LK80yio2cp41CW867JIg861i9cSFFokP-d3Sj5o2Ng
+
+{
+  "name": "Kim",
+  "surname": "Kimov",
+  "password": "123456"
 }

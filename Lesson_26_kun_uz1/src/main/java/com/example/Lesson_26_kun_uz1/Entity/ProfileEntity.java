@@ -14,7 +14,7 @@ public class ProfileEntity extends BaseEntity{
     private String name;
     @Column(nullable = false)
     private String surname;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String email;
 
 
@@ -23,6 +23,9 @@ public class ProfileEntity extends BaseEntity{
 
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private String sms;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")

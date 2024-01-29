@@ -94,6 +94,19 @@ public class ProfileService {
 
 
     }
+
+    public ProfileDTO updateDetail(Integer id,ProfileDTO profileDTO) {
+        ProfileEntity profileEntity = get(id);
+        profileEntity.setName(profileDTO.getName());
+        profileEntity.setSurname(profileDTO.getSurname());
+        profileEntity.setPassword(profileDTO.getPassword());
+        profilerepository.save(profileEntity);
+        return profileDTO;
+
+    }
+    public ProfileEntity get(Integer id){
+       return profilerepository.findById(id).orElseThrow(() -> new AppBadException("Profile not fount"));
+    }
 }
 
 

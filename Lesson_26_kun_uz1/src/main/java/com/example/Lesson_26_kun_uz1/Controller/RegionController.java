@@ -7,7 +7,9 @@ import com.example.Lesson_26_kun_uz1.Entity.RegionEntity;
 import com.example.Lesson_26_kun_uz1.Enums.Language;
 import com.example.Lesson_26_kun_uz1.Enums.ProfileRole;
 import com.example.Lesson_26_kun_uz1.Service.RegionService;
+import com.example.Lesson_26_kun_uz1.Util.HttpRequestUTIL;
 import com.example.Lesson_26_kun_uz1.Util.JWTUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +23,12 @@ public class RegionController {
     @Autowired
     public RegionService service;
 
-    @PostMapping("/creat")
+    @PostMapping("/adm")
     public ResponseEntity<RegionEntity> create(@RequestBody RegionDTO dto,
-                                               @RequestHeader(value = "Authorization") String jwt) {
-        return JWTUtil.check(jwt) ? ResponseEntity.ok(service.create(dto)) :
-                ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+                                               HttpServletRequest request) {
+
+        HttpRequestUTIL.getProfileId(request,ProfileRole.ADMIN,ProfileRole.MODERATOR);
+        return ResponseEntity.ok(service.create(dto));
     }
 
 

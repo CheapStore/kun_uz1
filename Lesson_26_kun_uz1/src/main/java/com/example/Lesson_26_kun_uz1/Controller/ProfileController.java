@@ -5,7 +5,10 @@ import com.example.Lesson_26_kun_uz1.Entity.ProfileEntity;
 import com.example.Lesson_26_kun_uz1.Enums.ProfileRole;
 import com.example.Lesson_26_kun_uz1.Enums.ProfileStatus;
 import com.example.Lesson_26_kun_uz1.Service.ProfileService;
+import com.example.Lesson_26_kun_uz1.Util.HttpRequestUTIL;
 import com.example.Lesson_26_kun_uz1.Util.JWTUtil;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -29,6 +32,14 @@ public class ProfileController {
                 ResponseEntity.status(HttpStatus.FORBIDDEN).build();
 
     }
+
+//    Integer id = (Integer) request.getAttribute("id");
+//    ProfileRole role = (ProfileRole) request.getAttribute("role");
+//
+//        if (!role.equals(ProfileRole.ADMIN)) {
+//        return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+//    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<?> update(
@@ -59,8 +70,19 @@ public class ProfileController {
     ) {
 
 
+        return ResponseEntity.ok(profileService.filter(page, size, filter));
+    }
 
-        return ResponseEntity.ok(profileService.filter(page,size, filter));
+    @PutMapping("/update")
+    public ResponseEntity<?> update(@RequestHeader(value = "Authorization") String jwt,
+                                    @RequestBody ProfileDTO profileDTO,
+                                    HttpServletRequest request) {
+        Integer id = HttpRequestUTIL.getProfileId(request);
+
+//        return ResponseEntity.ok(profileService.updateDetail(jwtDTO.getId(), profileDTO));
+        return ResponseEntity.ok(profileService.updateDetail(id, profileDTO));
+
+
     }
 
 

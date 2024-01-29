@@ -11,6 +11,30 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+//@Service
+//public class InitService {
+//    @Autowired
+//    private Profilerepository profilerepository;
+//    public void initAdmin() {
+//        String adminEmail = "admin@mail.ru";
+//        Optional<ProfileEntity> optional = profilerepository.findByEmail(adminEmail);
+//        if (optional.isPresent()) {
+//            return;
+//        }
+//         create admin
+//        ProfileEntity admin = new ProfileEntity();
+//        admin.setName("Admin");
+//        admin.setSurname("Adminjon");
+//        admin.setEmail(adminEmail);
+//        admin.setStatus(ProfileStatus.ACTIVE);
+//        admin.setRole(ProfileRole.ADMIN);
+//        admin.setPassword(MDUtil.encode("12345"));
+//        admin.setPhone("520");
+//        profilerepository.save(admin);
+//    }
+//
+//
+//}
 @Service
 public class InitService {
     @Autowired
@@ -26,10 +50,11 @@ public class InitService {
         admin.setName("Admin");
         admin.setSurname("Adminjon");
         admin.setEmail(adminEmail);
+        admin.setSms("1111");
         admin.setStatus(ProfileStatus.ACTIVE);
         admin.setRole(ProfileRole.ADMIN);
+        admin.setPhone("+998997971636");
         admin.setPassword(MDUtil.encode("12345"));
-        admin.setPhone("853");
         profilerepository.save(admin);
     }
 
