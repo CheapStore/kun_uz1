@@ -27,4 +27,10 @@ public interface Profilerepository extends CrudRepository<ProfileEntity,Integer>
      Integer sms(String kod);
 
 
+
+
+     @Transactional
+     @Modifying
+     @Query("update ProfileEntity p set p.status=?2 where p.id=?1")
+     void updateStatus(Integer id, ProfileStatus profileStatus);
 }

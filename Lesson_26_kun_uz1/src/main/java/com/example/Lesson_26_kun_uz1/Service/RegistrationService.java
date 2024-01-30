@@ -58,7 +58,7 @@ public class RegistrationService {
         profileEntity.setPhone(registirationProfileDTO.getPhone());
         profileEntity.setSurname(registirationProfileDTO.getSurName());
         profileEntity.setRole(ProfileRole.USER);
-        profileEntity.setStatus(ProfileStatus.BLOCK);
+        profileEntity.setStatus(ProfileStatus.REGISTRATION);
         profileEntity.setCreatedDate(LocalDateTime.now());
         profileEntity.setEmail(registirationProfileDTO.getEmail());
         profileEntity.setSms(password());
