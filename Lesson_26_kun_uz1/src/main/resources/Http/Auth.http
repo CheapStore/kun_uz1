@@ -12,4 +12,7 @@ Content-Type: application/json
 
 
 ### REGISTRATION()
-GET localhost:8080/auth/verification/email/
+GET localhost:8080/auth/verification/email/1234
+
+### init login
+POST http://localhost:8080/registration/sms?kod=1234

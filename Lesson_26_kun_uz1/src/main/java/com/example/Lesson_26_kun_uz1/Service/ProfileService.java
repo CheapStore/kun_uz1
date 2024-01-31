@@ -33,6 +33,7 @@ public class ProfileService {
         profileEntity.setRole(dto.getRole());
         profileEntity.setStatus(dto.getStatus());
         profileEntity.setPassword(dto.getPassword());
+        profileEntity.setTime(LocalDateTime.now());
         profileEntity.setPhone(dto.getPhone());
         profilerepository.save(profileEntity);
         return dto;

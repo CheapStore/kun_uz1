@@ -9,6 +9,7 @@ import jakarta.persistence.Access;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 //@Service
@@ -51,6 +52,7 @@ public class InitService {
         admin.setSurname("Adminjon");
         admin.setEmail(adminEmail);
         admin.setSms("1111");
+        admin.setTime(LocalDateTime.now());
         admin.setStatus(ProfileStatus.ACTIVE);
         admin.setRole(ProfileRole.ADMIN);
         admin.setPhone("+998997971636");

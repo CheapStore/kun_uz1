@@ -2,11 +2,13 @@ package com.example.Lesson_26_kun_uz1.Service;
 
 import com.example.Lesson_26_kun_uz1.DTO.RegistirationProfileDTO;
 import com.example.Lesson_26_kun_uz1.Entity.ProfileEntity;
+import com.example.Lesson_26_kun_uz1.Entity.SMSHistory;
 import com.example.Lesson_26_kun_uz1.Enums.ProfileRole;
 import com.example.Lesson_26_kun_uz1.Enums.ProfileStatus;
 import com.example.Lesson_26_kun_uz1.Exp.AppBadException;
 import com.example.Lesson_26_kun_uz1.Repository.Profilerepository;
 import com.example.Lesson_26_kun_uz1.Repository.RegistrationRepository;
+import com.example.Lesson_26_kun_uz1.Repository.SMSHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,26 +26,29 @@ public class RegistrationService {
 
     @Autowired
     private Profilerepository profilerepository;
-  private static   String email1 = "allayarovshahzodbekz@gmail.com";
+    @Autowired
+    private SMSHistoryRepository smsHistoryRepository;
+    private static String email1 = "allayarovshahzodbekz@gmail.com";
     private static String password = "kqvmpnebrzwmqowa";
 
-    public String registerEmail(RegistirationProfileDTO registirationProfileDTO)  {
+    public String registerEmail(RegistirationProfileDTO registirationProfileDTO) {
+
 
         ProfileEntity profileEntity = new ProfileEntity();
-            profileEntity.setPassword(registirationProfileDTO.getPassword());
-            profileEntity.setName(registirationProfileDTO.getName());
-            profileEntity.setPhone(registirationProfileDTO.getPhone());
-            profileEntity.setSurname(registirationProfileDTO.getSurName());
-            profileEntity.setRole(ProfileRole.USER);
-            profileEntity.setStatus(ProfileStatus.BLOCK);
-            profileEntity.setCreatedDate(LocalDateTime.now());
-            profileEntity.setEmail(registirationProfileDTO.getEmail());
-            profileEntity.setSms(password());
-            repository.save(profileEntity);
+        profileEntity.setPassword(registirationProfileDTO.getPassword());
+        profileEntity.setName(registirationProfileDTO.getName());
+        profileEntity.setPhone(registirationProfileDTO.getPhone());
+        profileEntity.setSurname(registirationProfileDTO.getSurName());
+        profileEntity.setRole(ProfileRole.USER);
+        profileEntity.setStatus(ProfileStatus.BLOCK);
+        profileEntity.setCreatedDate(LocalDateTime.now());
+        profileEntity.setEmail(registirationProfileDTO.getEmail());
+        profileEntity.setSms(password());
+        repository.save(profileEntity);
 
 
         try {
-            sendMail(profileEntity.getEmail(),profileEntity.getSms());
+            sendMail(profileEntity.getEmail(), profileEntity.getSms());
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
@@ -51,7 +56,9 @@ public class RegistrationService {
 
 
     }
-    public String register(RegistirationProfileDTO registirationProfileDTO)  {
+
+    public String register(RegistirationProfileDTO registirationProfileDTO) {
+        SMSHistory smsHistory = new SMSHistory();
         ProfileEntity profileEntity = new ProfileEntity();
         profileEntity.setPassword(registirationProfileDTO.getPassword());
         profileEntity.setName(registirationProfileDTO.getName());
@@ -61,8 +68,15 @@ public class RegistrationService {
         profileEntity.setStatus(ProfileStatus.REGISTRATION);
         profileEntity.setCreatedDate(LocalDateTime.now());
         profileEntity.setEmail(registirationProfileDTO.getEmail());
+        profileEntity.setTime(LocalDateTime.now());
         profileEntity.setSms(password());
         repository.save(profileEntity);
+        smsHistory.setReason(ProfileStatus.REGISTRATION.name());
+        smsHistory.setCod(profileEntity.getSms());
+        smsHistory.setProfileId(profileEntity.getId());
+        smsHistory.setCreatedDate(LocalDateTime.now());
+        smsHistory.setPhone(registirationProfileDTO.getPhone());
+        smsHistoryRepository.save(smsHistory);
         return "Sms jo`natildi:";
     }
 
@@ -93,10 +107,11 @@ public class RegistrationService {
         properties.put("mail.smtp.auth", "true");
         return properties;
     }
-    public String password(){
-        Random random=new Random();
-        String parol="0123456789";
-        StringBuilder password=new StringBuilder();
+
+    public String password() {
+        Random random = new Random();
+        String parol = "0123456789";
+        StringBuilder password = new StringBuilder();
         for (int i = 0; i < 4; i++) {
             int index = random.nextInt(parol.length());
             password.append(parol.charAt(index));
@@ -108,11 +123,30 @@ public class RegistrationService {
 
 
     public String updateStatus(String kod) {
-        Integer sms = profilerepository.sms(kod);
-        if (sms==1){
-            return "Ro`yxatdan o`tdingiz";
+        ProfileEntity profileEntity = profilerepository.findBySms(kod).get();
+
+        if (profileEntity.getTime()!=null){
+            if (LocalDateTime.now().getMinute() - profileEntity.getTime().getMinute() > 1) {
+                String password1 = password();
+                profilerepository.updateSMS(kod,password1);
+                SMSHistory smsHistory=new SMSHistory();
+                smsHistory.setPhone(profileEntity.getPhone());
+                smsHistory.setCod(password1);
+                smsHistory.setReason("Takror ");
+                smsHistory.setCreatedDate(LocalDateTime.now());
+                smsHistoryRepository.save(smsHistory);
+                throw new AppBadException("Sms vaqti tugadi!!! \n" +
+                        "Qayta jo`natildi:");
+            }
+                profilerepository.sms(kod);
+                return "Ro`yxatdan o`tdingiz";
+
         }
-        throw new AppBadException("sms xato!!!");
+
+        return null;
+
+
+
     }
 }
 

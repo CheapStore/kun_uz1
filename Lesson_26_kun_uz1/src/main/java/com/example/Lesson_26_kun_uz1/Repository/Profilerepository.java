@@ -23,14 +23,20 @@ public interface Profilerepository extends CrudRepository<ProfileEntity,Integer>
 
      @Transactional
      @Modifying
-     @Query("update ProfileEntity p set p.status='ACTIVE' where p.sms=?1")
+     @Query("update ProfileEntity p set p.status='ACTIVE' where p.sms=?1 and p.status='REGISTRATION'")
      Integer sms(String kod);
 
 
 
-
+     Optional<ProfileEntity> findBySms(String kod);
      @Transactional
      @Modifying
      @Query("update ProfileEntity p set p.status=?2 where p.id=?1")
      void updateStatus(Integer id, ProfileStatus profileStatus);
+
+
+     @Transactional
+     @Modifying
+     @Query("update ProfileEntity p set p.sms=?2 where p.sms=?1 and p.status='REGISTRATION'")
+     void updateSMS(String kod, String password);
 }

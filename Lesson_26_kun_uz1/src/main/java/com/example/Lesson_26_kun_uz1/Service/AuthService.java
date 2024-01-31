@@ -1,14 +1,15 @@
 package com.example.Lesson_26_kun_uz1.Service;
 
-import com.example.Lesson_26_kun_uz1.DTO.AuthDTO;
-import com.example.Lesson_26_kun_uz1.DTO.JwtDTO;
-import com.example.Lesson_26_kun_uz1.DTO.ProfileDTO;
-import com.example.Lesson_26_kun_uz1.DTO.RegistirationProfileDTO;
+import com.example.Lesson_26_kun_uz1.DTO.*;
+import com.example.Lesson_26_kun_uz1.Entity.EmailSendHistoryEntity;
 import com.example.Lesson_26_kun_uz1.Entity.ProfileEntity;
+import com.example.Lesson_26_kun_uz1.Entity.SMSHistory;
 import com.example.Lesson_26_kun_uz1.Enums.ProfileRole;
 import com.example.Lesson_26_kun_uz1.Enums.ProfileStatus;
 import com.example.Lesson_26_kun_uz1.Exp.AppBadException;
+import com.example.Lesson_26_kun_uz1.Repository.EmailHistoryRepository;
 import com.example.Lesson_26_kun_uz1.Repository.Profilerepository;
+import com.example.Lesson_26_kun_uz1.Repository.SMSHistoryRepository;
 import com.example.Lesson_26_kun_uz1.Util.JWTUtil;
 import com.example.Lesson_26_kun_uz1.Util.MDUtil;
 import io.jsonwebtoken.JwtException;
@@ -16,12 +17,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class AuthService {
     @Autowired
     private Profilerepository profileRepository;
+    @Autowired
+    private EmailHistoryRepository emailHistoryRepository;
 
     @Autowired
     private MailSenderService mailSender;
@@ -62,6 +67,7 @@ public class AuthService {
                 throw new AppBadException("Email exists");
             }
         }
+        EmailSendHistoryEntity emailSendHistory=new EmailSendHistoryEntity();
         // create
         ProfileEntity entity = new ProfileEntity();
         entity.setName(dto.getName());
@@ -71,8 +77,13 @@ public class AuthService {
         entity.setStatus(ProfileStatus.REGISTRATION);
         entity.setRole(ProfileRole.USER);
         entity.setPhone(dto.getPhone());
-        entity.setSms("1234");
+        entity.setSms(password());
         profileRepository.save(entity);
+        emailSendHistory.setCod(entity.getSms());
+        emailSendHistory.setEmail(entity.getEmail());
+        emailSendHistory.setCreatedDate(LocalDateTime.now());
+        emailSendHistory.setSabab(ProfileStatus.REGISTRATION.name());
+        emailHistoryRepository.save(emailSendHistory);
         String jwt = JWTUtil.encodeForEmail(entity.getId());
         String text = "Hello. \n To complete registration please link to the following link\n"
                 + "http://localhost:8080/auth/verification/email/" + jwt;
@@ -83,6 +94,19 @@ public class AuthService {
 
         return true;
     }
+    public String password() {
+        Random random = new Random();
+        String parol = "0123456789";
+        StringBuilder password = new StringBuilder();
+        for (int i = 0; i < 4; i++) {
+            int index = random.nextInt(parol.length());
+            password.append(parol.charAt(index));
+        }
+        return password.toString();
+
+
+    }
+
 
     public String emailVerification(String jwt) {
         try {
@@ -102,5 +126,7 @@ public class AuthService {
         }
         return null;
     }
+
+
 
 }
