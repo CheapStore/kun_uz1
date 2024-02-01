@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Getter
 
-public class EmailSendHistoryEntity extends BaseEntity {
+public class EmailSendHistoryEntity extends CustomEntity {
     @Column(name = "email", nullable = false)
     private String email;
     @Column(name = "sabab",nullable = false)

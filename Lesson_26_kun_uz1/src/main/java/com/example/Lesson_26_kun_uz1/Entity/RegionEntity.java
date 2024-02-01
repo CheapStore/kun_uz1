@@ -2,6 +2,7 @@ package com.example.Lesson_26_kun_uz1.Entity;
 
 import com.example.Lesson_26_kun_uz1.Enums.Language;
 import jakarta.persistence.*;
+import jakarta.persistence.Entity;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Getter;
 import lombok.Setter;

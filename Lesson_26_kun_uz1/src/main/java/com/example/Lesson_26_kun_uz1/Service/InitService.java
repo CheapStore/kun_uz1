@@ -52,7 +52,6 @@ public class InitService {
         admin.setSurname("Adminjon");
         admin.setEmail(adminEmail);
         admin.setSms("1111");
-        admin.setTime(LocalDateTime.now());
         admin.setStatus(ProfileStatus.ACTIVE);
         admin.setRole(ProfileRole.ADMIN);
         admin.setPhone("+998997971636");

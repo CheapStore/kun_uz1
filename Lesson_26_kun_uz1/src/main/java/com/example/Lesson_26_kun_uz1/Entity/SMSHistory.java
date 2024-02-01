@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Getter
 @Entity
 @Table(name = "smsHistory")
-public class SMSHistory extends BaseEntity {
+public class SMSHistory extends CustomEntity {
     @Column(name = "profile_id")
     private Integer profileId;
 

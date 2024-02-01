@@ -3,6 +3,7 @@ package com.example.Lesson_26_kun_uz1.Entity;
 import com.example.Lesson_26_kun_uz1.Enums.ProfileRole;
 import com.example.Lesson_26_kun_uz1.Enums.ProfileStatus;
 import jakarta.persistence.*;
+import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,7 +31,7 @@ public class ProfileEntity extends BaseEntity{
     @Column(nullable = false)
     private String sms;
 
-    @Column(name = "cod_time")
+    @Column(nullable = false)
     private LocalDateTime time;
 
     @Enumerated(EnumType.STRING)

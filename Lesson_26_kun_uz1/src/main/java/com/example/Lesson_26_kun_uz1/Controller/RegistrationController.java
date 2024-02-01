@@ -13,25 +13,25 @@ import javax.mail.MessagingException;
 @RestController
 @RequestMapping("/registration")
 public class RegistrationController {
-    @Autowired
-    RegistrationService service;
+//    @Autowired
+//    RegistrationService service;
+//
+//    @PostMapping("/create")
+//    public ResponseEntity<String> registration(@RequestBody RegistirationProfileDTO registirationProfileDTO) {
+//        return ResponseEntity.ok(service.register(registirationProfileDTO));
+//    }
+//
+//    @PostMapping ("/sms")
+//    public ResponseEntity<String> updateStatus(@RequestParam(value = "kod")String kod) {
+//        return ResponseEntity.ok(service.updateStatus(kod));
+//    }
 
-    @PostMapping("/create")
-    public ResponseEntity<String> registration(@RequestBody RegistirationProfileDTO registirationProfileDTO) {
-        return ResponseEntity.ok(service.register(registirationProfileDTO));
-    }
 
-    @PostMapping ("/sms")
-    public ResponseEntity<String> updateStatus(@RequestParam(value = "kod")String kod) {
-        return ResponseEntity.ok(service.updateStatus(kod));
-    }
-
-
-    @PostMapping ("/email")
-    public ResponseEntity<String> email(@RequestBody RegistirationProfileDTO registirationProfileDTO) throws MessagingException {
-        Mailing mailing = new Mailing();
-        mailing.sendMail("allayarovshahzodbekz@gmail.com","husen yubordi.");
-        return ResponseEntity.ok(service.registerEmail(registirationProfileDTO));
-    }
+//    @PostMapping ("/email")
+//    public ResponseEntity<String> email(@RequestBody RegistirationProfileDTO registirationProfileDTO) throws MessagingException {
+//        Mailing mailing = new Mailing();
+//        mailing.sendMail("allayarovshahzodbekz@gmail.com","husen yubordi.");
+//        return ResponseEntity.ok(service.registerEmail(registirationProfileDTO));
+//    }
 
 }

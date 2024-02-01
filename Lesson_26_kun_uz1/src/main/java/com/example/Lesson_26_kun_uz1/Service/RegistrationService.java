@@ -9,6 +9,7 @@ import com.example.Lesson_26_kun_uz1.Exp.AppBadException;
 import com.example.Lesson_26_kun_uz1.Repository.Profilerepository;
 import com.example.Lesson_26_kun_uz1.Repository.RegistrationRepository;
 import com.example.Lesson_26_kun_uz1.Repository.SMSHistoryRepository;
+import com.example.Lesson_26_kun_uz1.Util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,8 @@ public class RegistrationService {
     private SMSHistoryRepository smsHistoryRepository;
     private static String email1 = "allayarovshahzodbekz@gmail.com";
     private static String password = "kqvmpnebrzwmqowa";
+    @Autowired
+    private SMSService smsService;
 
     public String registerEmail(RegistirationProfileDTO registirationProfileDTO) {
 
@@ -68,8 +71,8 @@ public class RegistrationService {
         profileEntity.setStatus(ProfileStatus.REGISTRATION);
         profileEntity.setCreatedDate(LocalDateTime.now());
         profileEntity.setEmail(registirationProfileDTO.getEmail());
-        profileEntity.setTime(LocalDateTime.now());
         profileEntity.setSms(password());
+        profileEntity.setTime(LocalDateTime.now());
         repository.save(profileEntity);
         smsHistory.setReason(ProfileStatus.REGISTRATION.name());
         smsHistory.setCod(profileEntity.getSms());
@@ -78,6 +81,11 @@ public class RegistrationService {
         smsHistory.setPhone(registirationProfileDTO.getPhone());
         smsHistoryRepository.save(smsHistory);
         return "Sms jo`natildi:";
+
+//        String code = RandomUtil.getRandomSmsCode();
+//        smsService.send(profileEntity.getPhone(),"KunuzTest verification code: ", code);
+//        return "Sms jo`natildi:";
+
     }
 
     public void sendMail(String email, String cod) throws MessagingException {
@@ -124,9 +132,15 @@ public class RegistrationService {
 
     public String updateStatus(String kod) {
         ProfileEntity profileEntity = profilerepository.findBySms(kod).get();
+        if (profileEntity.getStatus().equals(ProfileStatus.ACTIVE)){
+            throw new AppBadException("ro`yxatdan o`tkansiz.");
+        }
 
         if (profileEntity.getTime()!=null){
             if (LocalDateTime.now().getMinute() - profileEntity.getTime().getMinute() > 1) {
+                if (profileEntity.getStatus().equals(ProfileStatus.ACTIVE)){
+                    throw new AppBadException("ro`yxatdan o`tkansiz.");
+                }
                 String password1 = password();
                 profilerepository.updateSMS(kod,password1);
                 SMSHistory smsHistory=new SMSHistory();

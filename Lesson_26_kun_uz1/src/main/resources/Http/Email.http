@@ -1,0 +1,17 @@
+### REGISTRATION()
+POST localhost:8080/email/create
+Content-Type: application/json
+
+{
+  "name": "Sirojiddin",
+  "surName": "Urinboyev",
+  "email": "orinboyevsirojiddin18@gmail.com",
+  "password": "2030",
+  "phone": "+998945767546"
+}
+
+
+### REGISTRATION()
+GET localhost:8080/email/verification/email/1234
+
+### init login

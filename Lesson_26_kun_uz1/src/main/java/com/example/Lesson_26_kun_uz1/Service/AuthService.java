@@ -18,6 +18,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -67,6 +69,13 @@ public class AuthService {
                 throw new AppBadException("Email exists");
             }
         }
+        LocalDateTime from=LocalDateTime.now().minusMinutes(1);
+        LocalDateTime to =LocalDateTime.now();
+
+        if (emailHistoryRepository.countSendEmail(dto.getEmail(), from, to) >= 3) {
+            throw new AppBadException("To many attempt. Please try after 1 minute.");
+        }
+
         EmailSendHistoryEntity emailSendHistory=new EmailSendHistoryEntity();
         // create
         ProfileEntity entity = new ProfileEntity();
@@ -78,6 +87,8 @@ public class AuthService {
         entity.setRole(ProfileRole.USER);
         entity.setPhone(dto.getPhone());
         entity.setSms(password());
+        entity.setTime(LocalDateTime.MAX);
+        entity.setTime(LocalDateTime.now());
         profileRepository.save(entity);
         emailSendHistory.setCod(entity.getSms());
         emailSendHistory.setEmail(entity.getEmail());
@@ -85,8 +96,19 @@ public class AuthService {
         emailSendHistory.setSabab(ProfileStatus.REGISTRATION.name());
         emailHistoryRepository.save(emailSendHistory);
         String jwt = JWTUtil.encodeForEmail(entity.getId());
-        String text = "Hello. \n To complete registration please link to the following link\n"
-                + "http://localhost:8080/auth/verification/email/" + jwt;
+        String text = "<h1 style=\"text-align: center\">Hello %s</h1>\n" +
+                "<p style=\"background-color: indianred; color: white; padding: 30px\">To complete registration please link to the following link</p>\n" +
+                "<a style=\" background-color: #f44336;\n" +
+                "  color: white;\n" +
+                "  padding: 14px 25px;\n" +
+                "  text-align: center;\n" +
+                "  text-decoration: none;\n" +
+                "  display: inline-block;\" href=\"http://localhost:8080/email/verification/email/%s\n" +
+                "\">Click</a>\n" +
+                "<br>\n";
+        text = String.format(text, entity.getName(), jwt);
+//        mailSender.sendEmail(dto.getEmail(), "Complete registration", text);
+
 
         //send verification code (email/sms)
         mailSender.sendEmail(dto.getEmail(), "Complete REGISTRATION", text);
@@ -125,6 +147,21 @@ public class AuthService {
             throw new AppBadException("Please tyre again.");
         }
         return null;
+    }
+
+    public List<ProfileEntity>getAll(){
+        Iterable<ProfileEntity> all = profileRepository.findAll();
+        List<ProfileEntity>profileEntities=new ArrayList<>();
+        for (ProfileEntity profileEntity : all) {
+            ProfileDTO profileDTO=new ProfileDTO();
+            profileDTO.setId(profileEntity.getId());
+            profileDTO.setRole(profileEntity.getRole());
+            profileDTO.setName(profileEntity.getName());
+            profileDTO.setSurname(profileEntity.getSurname());
+            profileDTO.setPassword(profileDTO.getPassword());
+            profileEntities.add(profileEntity);
+        }
+        return profileEntities;
     }
 
 

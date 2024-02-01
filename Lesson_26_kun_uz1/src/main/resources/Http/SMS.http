@@ -1,0 +1,14 @@
+POST http://localhost:8080/sms/create
+Content-Type: application/json
+
+{
+  "name": "sardor",
+  "surName": "Akmalov",
+  "password": "2233",
+  "email": "@mail.com",
+  "phone": "+998941235"
+}
+### init login
+
+POST http://localhost:8080/sms/sms?kod=3056
+

@@ -18,16 +18,16 @@ public class AuthController {
     private ResponseEntity<ProfileDTO> login(@RequestBody AuthDTO authDTO) {
         return ResponseEntity.ok(authService.auth(authDTO));
     }
- @PostMapping("/register")
-    private ResponseEntity<Boolean> registration(@RequestBody RegistirationProfileDTO authDTO) {
-        return ResponseEntity.ok(authService.registration(authDTO));
-    }
-
-
-    @GetMapping("/verification/email/{jwt}")
-    public ResponseEntity<String> emailVerification(@PathVariable("jwt") String jwt) {
-        return ResponseEntity.ok(authService.emailVerification(jwt));
-    }
+// @PostMapping("/register")
+//    private ResponseEntity<Boolean> registration(@RequestBody RegistirationProfileDTO authDTO) {
+//        return ResponseEntity.ok(authService.registration(authDTO));
+//    }
+//
+//
+//    @GetMapping("/verification/email/{jwt}")
+//    public ResponseEntity<String> emailVerification(@PathVariable("jwt") String jwt) {
+//        return ResponseEntity.ok(authService.emailVerification(jwt));
+//    }
 
 
 }
