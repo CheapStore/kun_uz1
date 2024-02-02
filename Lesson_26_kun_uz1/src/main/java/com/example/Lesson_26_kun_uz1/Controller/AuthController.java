@@ -18,6 +18,12 @@ public class AuthController {
     private ResponseEntity<ProfileDTO> login(@RequestBody AuthDTO authDTO) {
         return ResponseEntity.ok(authService.auth(authDTO));
     }
+
+
+    @PostMapping("/moder")
+    private ResponseEntity<ProfileDTO> login1(@RequestBody AuthDTO authDTO) {
+        return ResponseEntity.ok(authService.auth(authDTO));
+    }
 // @PostMapping("/register")
 //    private ResponseEntity<Boolean> registration(@RequestBody RegistirationProfileDTO authDTO) {
 //        return ResponseEntity.ok(authService.registration(authDTO));

@@ -106,4 +106,11 @@ public class ArticleService {
 
         return dto;
     }
+
+    public ArticleDTO createModerator(ArticleDTO articleDTO) {
+//        1. CREATE (Moderator) status(NotPublished)
+//        (title,description,content,image_id, region_id,category_id, articleType(array))
+
+        return null;
+    }
 }

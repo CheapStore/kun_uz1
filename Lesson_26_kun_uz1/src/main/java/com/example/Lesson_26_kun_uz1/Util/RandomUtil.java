@@ -8,7 +8,7 @@ public class RandomUtil {
     public static String getRandomSmsCode() {
         String parol = "123456789";
         StringBuilder password = new StringBuilder();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             int index = random.nextInt(parol.length());
             password.append(parol.charAt(index));
         }

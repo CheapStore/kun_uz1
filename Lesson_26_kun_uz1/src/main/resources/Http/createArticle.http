@@ -1,0 +1,13 @@
+### crete Article(MODERATOR)
+POST http://localhost:8080/article/moder
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDY4ODMxMjYsImlkIjozMSwicm9sZSI6Ik1PREVSQVRPUiIsImV4cCI6MTcwNjk2OTUyNiwiaXNzIjoiS3VuVXpUZXN0In0.K9JHcsy4O2z_PmGeIffATdQ-kX6MfSeQaHLQn5pcg6AW12YtgvPYIUN_Y6pC0FrxrRvaniHCGeiANWRaH7RoZw
+
+{
+  "title": "Yangilik",
+  "description": "Xorijiy Yangiliklar to`plami",
+  "content": "xabar24",
+  "imagesId": "1",
+  "regionId": 1
+
+}

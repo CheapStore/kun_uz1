@@ -35,8 +35,6 @@ public class RegistrationService {
     private SMSService smsService;
 
     public String registerEmail(RegistirationProfileDTO registirationProfileDTO) {
-
-
         ProfileEntity profileEntity = new ProfileEntity();
         profileEntity.setPassword(registirationProfileDTO.getPassword());
         profileEntity.setName(registirationProfileDTO.getName());
@@ -80,11 +78,14 @@ public class RegistrationService {
         smsHistory.setCreatedDate(LocalDateTime.now());
         smsHistory.setPhone(registirationProfileDTO.getPhone());
         smsHistoryRepository.save(smsHistory);
-        return "Sms jo`natildi:";
-
-//        String code = RandomUtil.getRandomSmsCode();
-//        smsService.send(profileEntity.getPhone(),"KunuzTest verification code: ", code);
 //        return "Sms jo`natildi:";
+
+        String code = "O`zbekiston Respublikasi maktabgacha va maktab ta'limi vazirligi:";
+        smsService.send(profileEntity.getPhone(), "" +
+                "Hurmatli Muxiddinova Dilzoda Elmurod qizi, " +
+                "sizni XTB nomidan IELTS ga bepul yoʻllanma yutib olganingiz bilan tabriklaymiz. " +
+                "Parkent XTB.", code);
+       return null;
 
     }
 

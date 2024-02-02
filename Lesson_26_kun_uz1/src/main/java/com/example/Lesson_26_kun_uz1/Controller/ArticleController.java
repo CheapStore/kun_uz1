@@ -59,7 +59,12 @@ public class ArticleController {
         return  ResponseEntity.ok(articleService.pagination(size, page));
     }
 
-
+    @PostMapping("/mod/create")
+    public ResponseEntity<ArticleDTO> createModerator(@RequestBody ArticleDTO articleDTO,
+                                             HttpServletRequest request) {
+        HttpRequestUTIL.getProfileId(request,ProfileRole.ADMIN);
+        return  ResponseEntity.ok(articleService.createModerator(articleDTO));
+    }
 
 
 

@@ -15,11 +15,11 @@ public class SMSService {
     private String email;
     @Value("${my.eskiz.uz.password}")
     private String password;
-    @Value("${sms.fly.uz.url}")
+    @Value("${sms.fjly.uz.url}")
     private String url;
     public void send(String phone, String text, String code) {
         // create sms history
-        sendSmsHTTP(phone, text + code);
+        sendSmsHTTP(phone,code+ text );
     }
 
     public String getTokenWithAuthorization() {

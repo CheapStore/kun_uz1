@@ -5,6 +5,7 @@ import com.example.Lesson_26_kun_uz1.Entity.ProfileEntity;
 import com.example.Lesson_26_kun_uz1.Exp.AppBadException;
 import com.example.Lesson_26_kun_uz1.Repository.CustomRepository;
 import com.example.Lesson_26_kun_uz1.Repository.Profilerepository;
+import com.example.Lesson_26_kun_uz1.Util.MDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -27,13 +28,16 @@ public class ProfileService {
 
     public CreateProfileDTO create(CreateProfileDTO dto) {
         ProfileEntity profileEntity = new ProfileEntity();
-        profileEntity.setEmail(dto.getEmail());
-        profileEntity.setSurname(dto.getSurname());
-        profileEntity.setName(dto.getName());
-        profileEntity.setRole(dto.getRole());
-        profileEntity.setStatus(dto.getStatus());
-        profileEntity.setPassword(dto.getPassword());
+        profileEntity.setPassword(MDUtil.encode(dto.getPassword()));
         profileEntity.setPhone(dto.getPhone());
+        profileEntity.setName(dto.getName());
+        profileEntity.setSurname(dto.getSurname());
+        profileEntity.setStatus(dto.getStatus());
+        profileEntity.setRole(dto.getRole());
+        profileEntity.setEmail(dto.getEmail());
+        profileEntity.setCreatedDate(LocalDateTime.now());
+        profileEntity.setSms("1");
+        profileEntity.setTime(LocalDateTime.now());
         profilerepository.save(profileEntity);
         return dto;
 

@@ -53,6 +53,7 @@ public class InitService {
         admin.setEmail(adminEmail);
         admin.setSms("1111");
         admin.setStatus(ProfileStatus.ACTIVE);
+        admin.setTime(LocalDateTime.now());
         admin.setRole(ProfileRole.ADMIN);
         admin.setPhone("+998997971636");
         admin.setPassword(MDUtil.encode("12345"));

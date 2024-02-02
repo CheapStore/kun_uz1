@@ -34,15 +34,12 @@ public class AuthService {
     private MailSenderService mailSender;
 
     public ProfileDTO auth(AuthDTO auth) {
-        Optional<ProfileEntity> entity = profileRepository.findByEmailAndPassword(auth.getEmail(), MDUtil.encode(auth.getPassword()));
-
+        Optional<ProfileEntity> entity = profileRepository.findByEmailAndPassword(auth.getEmail(),MDUtil.encode(auth.getPassword()) );
+//        MDUtil.encode(auth.getPassword())
         if (entity.isEmpty()) {
             throw new AppBadException("Email or password is wrong");
         }
-
         ProfileEntity profileEntity1 = entity.get();
-
-
         if (!profileEntity1.getStatus().equals(ProfileStatus.ACTIVE)) {
             throw new AppBadException("Profile not active");
         }
@@ -53,7 +50,6 @@ public class AuthService {
         dto.setJwt(JWTUtil.encode(profileEntity.getId(), profileEntity.getRole()));
         dto.setSurname(profileEntity.getSurname());
         dto.setRole(profileEntity.getRole());
-
         return dto;
 
     }
@@ -69,14 +65,14 @@ public class AuthService {
                 throw new AppBadException("Email exists");
             }
         }
-        LocalDateTime from=LocalDateTime.now().minusMinutes(1);
-        LocalDateTime to =LocalDateTime.now();
+        LocalDateTime from = LocalDateTime.now().minusMinutes(1);
+        LocalDateTime to = LocalDateTime.now();
 
         if (emailHistoryRepository.countSendEmail(dto.getEmail(), from, to) >= 3) {
             throw new AppBadException("To many attempt. Please try after 1 minute.");
         }
 
-        EmailSendHistoryEntity emailSendHistory=new EmailSendHistoryEntity();
+        EmailSendHistoryEntity emailSendHistory = new EmailSendHistoryEntity();
         // create
         ProfileEntity entity = new ProfileEntity();
         entity.setName(dto.getName());
@@ -116,6 +112,7 @@ public class AuthService {
 
         return true;
     }
+
     public String password() {
         Random random = new Random();
         String parol = "0123456789";
@@ -149,11 +146,11 @@ public class AuthService {
         return null;
     }
 
-    public List<ProfileEntity>getAll(){
+    public List<ProfileEntity> getAll() {
         Iterable<ProfileEntity> all = profileRepository.findAll();
-        List<ProfileEntity>profileEntities=new ArrayList<>();
+        List<ProfileEntity> profileEntities = new ArrayList<>();
         for (ProfileEntity profileEntity : all) {
-            ProfileDTO profileDTO=new ProfileDTO();
+            ProfileDTO profileDTO = new ProfileDTO();
             profileDTO.setId(profileEntity.getId());
             profileDTO.setRole(profileEntity.getRole());
             profileDTO.setName(profileEntity.getName());
@@ -163,7 +160,6 @@ public class AuthService {
         }
         return profileEntities;
     }
-
 
 
 }
