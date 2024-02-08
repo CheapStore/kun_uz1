@@ -23,10 +23,9 @@ public class RegionController {
     @Autowired
     public RegionService service;
 
-    @PostMapping("/adm")
-    public ResponseEntity<RegionEntity> create(@RequestBody RegionDTO dto,
+    @PostMapping("/adm/create")
+    public ResponseEntity<RegionDTO> create(@RequestBody RegionDTO dto,
                                                HttpServletRequest request) {
-
         HttpRequestUTIL.getProfileId(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(service.create(dto));
     }

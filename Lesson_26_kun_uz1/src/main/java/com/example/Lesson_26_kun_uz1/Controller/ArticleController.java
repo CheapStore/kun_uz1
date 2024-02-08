@@ -1,72 +1,38 @@
 package com.example.Lesson_26_kun_uz1.Controller;
 
-import com.example.Lesson_26_kun_uz1.DTO.ArticleDTO;
-import com.example.Lesson_26_kun_uz1.DTO.JwtDTO;
-import com.example.Lesson_26_kun_uz1.Enums.Language;
+import com.example.Lesson_26_kun_uz1.DTO.CreateArticleDTO;
+import com.example.Lesson_26_kun_uz1.DTO.UpdateArticleDTO;
 import com.example.Lesson_26_kun_uz1.Enums.ProfileRole;
 import com.example.Lesson_26_kun_uz1.Service.ArticleService;
 import com.example.Lesson_26_kun_uz1.Util.HttpRequestUTIL;
-import com.example.Lesson_26_kun_uz1.Util.JWTUtil;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
+@Slf4j
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
-
     @Autowired
-    public ArticleService articleService;
+    private ArticleService articleService;
 
-    @PostMapping("/adm/create")
-    public ResponseEntity<ArticleDTO> create(@RequestBody ArticleDTO articleDTO,
-                                             HttpServletRequest request) {
-        HttpRequestUTIL.getProfileId(request,ProfileRole.ADMIN);
-        return  ResponseEntity.ok(articleService.create(articleDTO));
+    @PostMapping("/moder")
+    public ResponseEntity<?> create(@RequestBody CreateArticleDTO dto,
+                                    HttpServletRequest request) {
+        Integer profileId = HttpRequestUTIL.getProfileId(request, ProfileRole.MODERATOR);
+        return ResponseEntity.ok(articleService.create(dto, profileId));
     }
 
-
-    @PutMapping("/adm/{id}")
-    public ResponseEntity<Boolean> update(@PathVariable(value = "id") Integer id,
-                                          @RequestBody ArticleDTO articleDTO,
-                                          HttpServletRequest request) {
-        HttpRequestUTIL.getProfileId(request,ProfileRole.ADMIN);
-        return  ResponseEntity.ok(articleService.update(id, articleDTO));
-    }
-
-    @DeleteMapping("/adm/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable(value = "id") Integer id,
-                                          HttpServletRequest request) {
-        HttpRequestUTIL.getProfileId(request,ProfileRole.ADMIN);
-        return  ResponseEntity.ok(articleService.delete(id));
-    }
-
-    @GetMapping("/language")
-    public ResponseEntity<List<ArticleDTO>> getListLanguage(@RequestParam(value = "language", defaultValue = "UZ") Language language) {
-
-        return ResponseEntity.ok(articleService.getlistLangue(language));
-    }
-
-    @GetMapping("/adm/Pagination")
-    private ResponseEntity<?> pagination(@RequestParam(value = "size") Integer size,
-                                         @RequestParam(value = "page") Integer page,
+    @PutMapping("/moder/{id}")
+    public ResponseEntity<String> update(@RequestBody UpdateArticleDTO dto,
+                                         @PathVariable(value = "id") String id,
                                          HttpServletRequest request) {
-        HttpRequestUTIL.getProfileId(request,ProfileRole.ADMIN);
-        return  ResponseEntity.ok(articleService.pagination(size, page));
+        HttpRequestUTIL.getProfileId(request, ProfileRole.MODERATOR);
+        return ResponseEntity.ok(articleService.update(id, dto));
     }
-
-    @PostMapping("/mod/create")
-    public ResponseEntity<ArticleDTO> createModerator(@RequestBody ArticleDTO articleDTO,
-                                             HttpServletRequest request) {
-        HttpRequestUTIL.getProfileId(request,ProfileRole.ADMIN);
-        return  ResponseEntity.ok(articleService.createModerator(articleDTO));
-    }
-
-
 
 
 }

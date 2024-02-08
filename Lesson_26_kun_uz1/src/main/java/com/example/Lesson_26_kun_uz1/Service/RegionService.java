@@ -1,14 +1,11 @@
 package com.example.Lesson_26_kun_uz1.Service;
 
-import com.example.Lesson_26_kun_uz1.DTO.ArticleDTO;
 import com.example.Lesson_26_kun_uz1.DTO.RegionDTO;
-import com.example.Lesson_26_kun_uz1.Entity.ArticleEntity;
 import com.example.Lesson_26_kun_uz1.Entity.RegionEntity;
 import com.example.Lesson_26_kun_uz1.Enums.Language;
 import com.example.Lesson_26_kun_uz1.Exp.AppBadException;
 import com.example.Lesson_26_kun_uz1.Repository.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.freemarker.FreeMarkerTemplateAvailabilityProvider;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +21,7 @@ public class RegionService {
     @Autowired
     private RegionRepository repository;
 
-    public RegionEntity create(RegionDTO dto) {
+    public RegionDTO create(RegionDTO dto) {
         RegionEntity regionEntity = new RegionEntity();
         regionEntity.setCreatedDate(LocalDateTime.now());
         regionEntity.setVisible(true);
@@ -33,7 +30,7 @@ public class RegionService {
         regionEntity.setNameUz(dto.getNameUz());
         regionEntity.setOrderNumber(dto.getOrderNumber());
         repository.save(regionEntity);
-        return regionEntity;
+        return dto(regionEntity);
     }
 
     public Boolean update(Integer id, RegionDTO dto) {

@@ -1,0 +1,29 @@
+### create article
+POST localhost:8080/article/moder
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg3MTQsImlkIjozMSwicm9sZSI6Ik1PREVSQVRPUiIsImV4cCI6MTcwNzQ2NTExNCwiaXNzIjoiS3VuVXpUZXN0In0.sDUnvHVlel5qOirsdbfZZM24RP8zGq1U8u5-sUbjAlKkZkHe8qI26ZbqnUzJTyEVMFxmCydFMImxO6OozHrC8Q
+
+{
+  "title": "article5",
+  "description": "article5",
+  "content": "article5",
+  "imagesId": "9bacc06f-830b-401d-a227-349d93553a06",
+  "regionId": 5,
+  "cagtegoryId": 5,
+  "types": [1,3]
+}
+
+### update article
+PUT localhost:8080/article/moder/d157b3ab-a240-41b5-8963-81476d576c91
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg3MTQsImlkIjozMSwicm9sZSI6Ik1PREVSQVRPUiIsImV4cCI6MTcwNzQ2NTExNCwiaXNzIjoiS3VuVXpUZXN0In0.sDUnvHVlel5qOirsdbfZZM24RP8zGq1U8u5-sUbjAlKkZkHe8qI26ZbqnUzJTyEVMFxmCydFMImxO6OozHrC8Q
+
+{
+  "title": "article1",
+  "description": "article2",
+  "content": "article1",
+  "imagesId": "d157b3ab-a240-41b5-8963-81476d576c91",
+  "regionId": 1,
+  "categoryId": 2,
+  "types": [2,3]
+}

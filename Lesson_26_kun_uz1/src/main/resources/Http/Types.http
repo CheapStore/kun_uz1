@@ -1,36 +1,40 @@
-### create region
-POST http://localhost:8080/region/adm/create
+### init login
+POST localhost:8080/types/adm/create
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3NDY0ODg5LCJpc3MiOiJLdW5VelRlc3QifQ.aXfuNY7VZP0pmzxtYsHMhS9PpeHx7ojt2zPSa5T-h9ZLSLLheJgk6Adz9WjmZdVpDVhgAFzosv9yYu6buLSEZw
+
+{
+  "articleName": "Name",
+  "nameUz": "uz",
+  "nameEn": "En",
+  "nameRu": "Ru",
+  "visible": true
+}
+
+
+### update Article
+PUT localhost:8080/types/adm/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3NDY0ODg5LCJpc3MiOiJLdW5VelRlc3QifQ.aXfuNY7VZP0pmzxtYsHMhS9PpeHx7ojt2zPSa5T-h9ZLSLLheJgk6Adz9WjmZdVpDVhgAFzosv9yYu6buLSEZw
+
 
 {
   "visible": false,
-  "orderNumber": 2,
-  "nameUz": "Samarqand UZ",
-  "nameRu": "Samarqand RU",
-  "nameEn": "Samarqand EN"
+  "articleName": "Xabar24",
+  "nameUz": "sportUz",
+  "nameEn": "sportEn",
+  "nameRu": "sportRu"
 }
 
 
+### getList Article
+GET localhost:8080/types/language?language=UZ
 
-### update region
-PUT localhost:8080/region/adm/1
-Content-Type: application/json
+
+### getList Article
+DELETE localhost:8080/types/adm/1
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3NDY0ODg5LCJpc3MiOiJLdW5VelRlc3QifQ.aXfuNY7VZP0pmzxtYsHMhS9PpeHx7ojt2zPSa5T-h9ZLSLLheJgk6Adz9WjmZdVpDVhgAFzosv9yYu6buLSEZw
 
-{
-  "visible": true,
-  "orderNumber": 3,
-  "nameUz": "Shahar UZ",
-  "nameRu": "Xorazm RU",
-  "nameEn": "Shahar En"
-
-}
-
-### delete  region
-DELETE localhost:8080/region/adm/5
+### getList Article
+GET localhost:8080/types/Pagination?size=1&page=1
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3NDY0ODg5LCJpc3MiOiJLdW5VelRlc3QifQ.aXfuNY7VZP0pmzxtYsHMhS9PpeHx7ojt2zPSa5T-h9ZLSLLheJgk6Adz9WjmZdVpDVhgAFzosv9yYu6buLSEZw
-
-### getLanguage  region
-GET localhost:8080/region/adm/language?lan=RU
-Authorization: Baarer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3NDY0ODg5LCJpc3MiOiJLdW5VelRlc3QifQ.aXfuNY7VZP0pmzxtYsHMhS9PpeHx7ojt2zPSa5T-h9ZLSLLheJgk6Adz9WjmZdVpDVhgAFzosv9yYu6buLSEZw
