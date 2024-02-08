@@ -1,29 +1,50 @@
 ### create article
 POST localhost:8080/article/moder
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg3MTQsImlkIjozMSwicm9sZSI6Ik1PREVSQVRPUiIsImV4cCI6MTcwNzQ2NTExNCwiaXNzIjoiS3VuVXpUZXN0In0.sDUnvHVlel5qOirsdbfZZM24RP8zGq1U8u5-sUbjAlKkZkHe8qI26ZbqnUzJTyEVMFxmCydFMImxO6OozHrC8Q
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQyNTQsImlkIjozLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNzA3NDcwNjU0LCJpc3MiOiJLdW5VelRlc3QifQ.lT7o7qmAsKiWmAvEBLP9MGB4bFgQPjY2NJ22x0vxzb9oJVtK3YlmuCF29Wy34wVLBRdB3ccbfWPDSK9MtvCMEA
 
 {
-  "title": "article5",
-  "description": "article5",
-  "content": "article5",
-  "imagesId": "9bacc06f-830b-401d-a227-349d93553a06",
-  "regionId": 5,
-  "cagtegoryId": 5,
-  "types": [1,3]
+  "title": "article",
+  "description": "article",
+  "content": "article7",
+  "imagesId": "2e3a8f90-9d16-4ca6-aed4-1ea3531e89eb",
+  "regionId":7,
+  "cagtegoryId": 2,
+  "types": [4,7]
 }
 
 ### update article
 PUT localhost:8080/article/moder/d157b3ab-a240-41b5-8963-81476d576c91
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg3MTQsImlkIjozMSwicm9sZSI6Ik1PREVSQVRPUiIsImV4cCI6MTcwNzQ2NTExNCwiaXNzIjoiS3VuVXpUZXN0In0.sDUnvHVlel5qOirsdbfZZM24RP8zGq1U8u5-sUbjAlKkZkHe8qI26ZbqnUzJTyEVMFxmCydFMImxO6OozHrC8Q
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQyNTQsImlkIjozLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNzA3NDcwNjU0LCJpc3MiOiJLdW5VelRlc3QifQ.lT7o7qmAsKiWmAvEBLP9MGB4bFgQPjY2NJ22x0vxzb9oJVtK3YlmuCF29Wy34wVLBRdB3ccbfWPDSK9MtvCMEA
 
 {
   "title": "article1",
   "description": "article2",
   "content": "article1",
   "imagesId": "d157b3ab-a240-41b5-8963-81476d576c91",
-  "regionId": 1,
-  "categoryId": 2,
-  "types": [2,3]
+  "regionId": 2,
+  "categoryId": 3,
+  "types": [2,4]
 }
+
+
+### updateVisible (Visble=false)
+PUT localhost:8080/article/moder/updateVisible/10fa932c-d9a2-4ab4-8b85-97d96c92
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQyNTQsImlkIjozLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNzA3NDcwNjU0LCJpc3MiOiJLdW5VelRlc3QifQ.lT7o7qmAsKiWmAvEBLP9MGB4bFgQPjY2NJ22x0vxzb9oJVtK3YlmuCF29Wy34wVLBRdB3ccbfWPDSK9MtvCMEA
+
+
+
+
+### updateStatus (Status =PUBLISHED)
+PUT localhost:8080/article/pub/updateStatus/669c6f31-3f97-4625-88ef-d6c077d093e6
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODc2MjMsImlkIjoyLCJyb2xlIjoiUFVCTElTSEVSIiwiZXhwIjoxNzA3NDc0MDIzLCJpc3MiOiJLdW5VelRlc3QifQ.QNhKP-Rq1Sfn6bgvrsR9SOESZhowOhcp-OpLYc11t7awSh9DRYeaBusX3fOPYdDzjYBGul3jFMBvzmrzNycIyQ
+
+### typesID(GET)
+GET localhost:8080/article/ArticleByTypes?id=4&size=0
+
+### ArticleSwitchId(GET)
+GET localhost:8080/article/ArticleSwitchId/4
+
+### Lan(GET)
+GET localhost:8080/article/getLanguage/bceba2df-8b74-4cdf-a3c9-07e0d282e22f?lan=UZ

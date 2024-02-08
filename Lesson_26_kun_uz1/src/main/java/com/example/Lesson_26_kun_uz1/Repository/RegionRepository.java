@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RegionRepository extends CrudRepository<RegionEntity,Integer> {
 
@@ -23,4 +24,6 @@ public interface RegionRepository extends CrudRepository<RegionEntity,Integer> {
     @Modifying
     @Query("update RegionEntity set visible=false where id=:id")
     Integer delete(@RequestParam("id")Integer id);
+    @Query("from RegionEntity where id=?1 and nameEn=?2 or nameUz=?2 or nameRu=?2")
+    Optional<RegionEntity> top(Integer regionId, String lan);
 }

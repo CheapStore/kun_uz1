@@ -39,4 +39,7 @@ public interface Profilerepository extends CrudRepository<ProfileEntity,Integer>
      @Modifying
      @Query("update ProfileEntity p set p.sms=?2 where p.sms=?1 and p.status='REGISTRATION'")
      void updateSMS(String kod, String password);
+
+
+
 }

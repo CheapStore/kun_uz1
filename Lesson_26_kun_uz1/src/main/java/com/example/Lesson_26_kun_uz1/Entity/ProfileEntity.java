@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 @Table(name = "profile")
-public class ProfileEntity extends BaseEntity{
+public class ProfileEntity extends BaseEntity {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
@@ -22,7 +22,7 @@ public class ProfileEntity extends BaseEntity{
     private String email;
 
 
-    @Column( nullable = false)
+    @Column(nullable = false)
     private String phone;
 
     @Column(nullable = false)
@@ -37,7 +37,6 @@ public class ProfileEntity extends BaseEntity{
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private ProfileStatus status;
-
 
 
     @Enumerated(EnumType.STRING)

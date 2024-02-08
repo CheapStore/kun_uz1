@@ -1,13 +1,13 @@
 ### init login
 POST localhost:8080/types/adm/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3NDY0ODg5LCJpc3MiOiJLdW5VelRlc3QifQ.aXfuNY7VZP0pmzxtYsHMhS9PpeHx7ojt2zPSa5T-h9ZLSLLheJgk6Adz9WjmZdVpDVhgAFzosv9yYu6buLSEZw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQ3MDMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc0NzExMDMsImlzcyI6Ikt1blV6VGVzdCJ9.55ddIYz7DG4N-Fc1LjcUivLoiMPU10WdqZBmJpuxXYJ7OxW3Oo15TGN3e7QJLzkfDf6rYf-8wPMeLqv6Zxt1HQ
 
 {
   "articleName": "Name",
-  "nameUz": "uz",
-  "nameEn": "En",
-  "nameRu": "Ru",
+  "nameUz": "Name5uz",
+  "nameEn": "Name5En",
+  "nameRu": "Name5Ru",
   "visible": true
 }
 
@@ -15,7 +15,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwic
 ### update Article
 PUT localhost:8080/types/adm/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3NDY0ODg5LCJpc3MiOiJLdW5VelRlc3QifQ.aXfuNY7VZP0pmzxtYsHMhS9PpeHx7ojt2zPSa5T-h9ZLSLLheJgk6Adz9WjmZdVpDVhgAFzosv9yYu6buLSEZw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQ3MDMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc0NzExMDMsImlzcyI6Ikt1blV6VGVzdCJ9.55ddIYz7DG4N-Fc1LjcUivLoiMPU10WdqZBmJpuxXYJ7OxW3Oo15TGN3e7QJLzkfDf6rYf-8wPMeLqv6Zxt1HQ
 
 
 {
@@ -33,8 +33,8 @@ GET localhost:8080/types/language?language=UZ
 
 ### getList Article
 DELETE localhost:8080/types/adm/1
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3NDY0ODg5LCJpc3MiOiJLdW5VelRlc3QifQ.aXfuNY7VZP0pmzxtYsHMhS9PpeHx7ojt2zPSa5T-h9ZLSLLheJgk6Adz9WjmZdVpDVhgAFzosv9yYu6buLSEZw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQ3MDMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc0NzExMDMsImlzcyI6Ikt1blV6VGVzdCJ9.55ddIYz7DG4N-Fc1LjcUivLoiMPU10WdqZBmJpuxXYJ7OxW3Oo15TGN3e7QJLzkfDf6rYf-8wPMeLqv6Zxt1HQ
 
 ### getList Article
 GET localhost:8080/types/Pagination?size=1&page=1
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3NDY0ODg5LCJpc3MiOiJLdW5VelRlc3QifQ.aXfuNY7VZP0pmzxtYsHMhS9PpeHx7ojt2zPSa5T-h9ZLSLLheJgk6Adz9WjmZdVpDVhgAFzosv9yYu6buLSEZw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQ3MDMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc0NzExMDMsImlzcyI6Ikt1blV6VGVzdCJ9.55ddIYz7DG4N-Fc1LjcUivLoiMPU10WdqZBmJpuxXYJ7OxW3Oo15TGN3e7QJLzkfDf6rYf-8wPMeLqv6Zxt1HQ

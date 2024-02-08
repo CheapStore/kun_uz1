@@ -14,6 +14,15 @@ POST http://localhost:8080/auth/moder
 Content-Type: application/json
 
 {
-  "email": "akmalxakimov97",
-  "password": "9797"
+  "email": "azim@gmail.com",
+  "password": "1111"
+}
+
+### init login
+POST http://localhost:8080/auth/moder
+Content-Type: application/json
+
+{
+  "email": "sunnat@gmail.com",
+  "password": "1111"
 }

@@ -1,11 +1,11 @@
 ### Create
-POST http://localhost:8080/attach/upload1
+POST http://localhost:8080/attach/upload
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
-Content-Disposition: form-data; name="file"; filename="test.jpg"
+Content-Disposition: form-data; name="file"; filename="1.jpg"
 
-< C:\Users\Laptop\Downloads\Telegram Desktop\test.jpg
+< C:\Coduz\1.jpg
 
 ### GET
 GET http://localhost:8080/attach/open/test.jpg
@@ -19,10 +19,27 @@ GET http://localhost:8080/attach/download/6fa148b8-b77e-40be-9326-610f03d0d0c3.j
 
 ### GET(pagination)
 GET http://localhost:8080/attach/adm/pagination?size=1&page=1
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczMDE3NTksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3Mzg4MTU5LCJpc3MiOiJLdW5VelRlc3QifQ.jKXoId7DF-EdBORnA7DGEejvKeR4c56KnlFNFQA6DfzhlXOu7ZfitIBB10AuJIpU8g9kSVhuKrORJ_6YhtfJLw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQ3MDMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc0NzExMDMsImlzcyI6Ikt1blV6VGVzdCJ9.55ddIYz7DG4N-Fc1LjcUivLoiMPU10WdqZBmJpuxXYJ7OxW3Oo15TGN3e7QJLzkfDf6rYf-8wPMeLqv6Zxt1HQ
 
 
 
 ### Delete(id)
 DELETE localhost:8080/attach/adm/delete/9ee11cfd-bfba-4f96-a195-02a79502cda4
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczMDY4NDQsImlkIjozMSwicm9sZSI6Ik1PREVSQVRPUiIsImV4cCI6MTcwNzM5MzI0NCwiaXNzIjoiS3VuVXpUZXN0In0.g6lKtUg_wWsBNyKscdBWDRELuAMHSIwOch-yCnF3A1ooCaJTBNcrhkJqo1WBarfpDFdJglHxm_XsQR-FhKf9KA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQ3MDMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc0NzExMDMsImlzcyI6Ikt1blV6VGVzdCJ9.55ddIYz7DG4N-Fc1LjcUivLoiMPU10WdqZBmJpuxXYJ7OxW3Oo15TGN3e7QJLzkfDf6rYf-8wPMeLqv6Zxt1HQ
+
+
+### Create
+POST http://localhost:8080/attach/adm/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQ3MDMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc0NzExMDMsImlzcyI6Ikt1blV6VGVzdCJ9.55ddIYz7DG4N-Fc1LjcUivLoiMPU10WdqZBmJpuxXYJ7OxW3Oo15TGN3e7QJLzkfDf6rYf-8wPMeLqv6Zxt1HQ
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="3.jpg"
+
+< C:\Coduz\3.jpg
+
+
+
+
+
+

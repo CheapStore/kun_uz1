@@ -18,12 +18,12 @@ public class RegionEntity extends BaseEntity {
     @Column(name = "order_number")
     private Integer orderNumber;
 
-    @Column(name = "Name_Uz")
+    @Column(name = "name_Uz")
     private String nameUz;
 
-    @Column(name = "Name_Ru")
+    @Column(name = "name_Ru")
     private String nameRu;
 
-    @Column(name = "Name_En")
+    @Column(name = "name_En")
     private String nameEn;
 }

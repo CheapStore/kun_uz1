@@ -28,4 +28,5 @@ public class ArticleDTO {
     private Integer moderatorId;
     private Integer publishedId;
 
+
 }

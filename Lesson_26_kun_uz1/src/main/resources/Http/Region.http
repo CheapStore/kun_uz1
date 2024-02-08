@@ -1,14 +1,14 @@
 ### create region
 POST http://localhost:8080/region/adm/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3NDY0ODg5LCJpc3MiOiJLdW5VelRlc3QifQ.aXfuNY7VZP0pmzxtYsHMhS9PpeHx7ojt2zPSa5T-h9ZLSLLheJgk6Adz9WjmZdVpDVhgAFzosv9yYu6buLSEZw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQ3MDMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc0NzExMDMsImlzcyI6Ikt1blV6VGVzdCJ9.55ddIYz7DG4N-Fc1LjcUivLoiMPU10WdqZBmJpuxXYJ7OxW3Oo15TGN3e7QJLzkfDf6rYf-8wPMeLqv6Zxt1HQ
 
 {
   "visible": false,
-  "orderNumber": 2,
-  "nameUz": "Samarqand UZ",
-  "nameRu": "Samarqand RU",
-  "nameEn": "Samarqand EN"
+  "orderNumber": 7,
+  "nameUz": "Qoraqalpog`iston UZ",
+  "nameRu": "Qoraqalpog`iston RU",
+  "nameEn": "Qoraqalpog`iston EN"
 }
 
 
@@ -16,11 +16,11 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwic
 ### update region
 PUT localhost:8080/region/adm/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3NDY0ODg5LCJpc3MiOiJLdW5VelRlc3QifQ.aXfuNY7VZP0pmzxtYsHMhS9PpeHx7ojt2zPSa5T-h9ZLSLLheJgk6Adz9WjmZdVpDVhgAFzosv9yYu6buLSEZw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQ3MDMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc0NzExMDMsImlzcyI6Ikt1blV6VGVzdCJ9.55ddIYz7DG4N-Fc1LjcUivLoiMPU10WdqZBmJpuxXYJ7OxW3Oo15TGN3e7QJLzkfDf6rYf-8wPMeLqv6Zxt1HQ
 
 {
   "visible": true,
-  "orderNumber": 3,
+  "orderNumber": 1,
   "nameUz": "Shahar UZ",
   "nameRu": "Xorazm RU",
   "nameEn": "Shahar En"
@@ -29,8 +29,8 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwic
 
 ### delete  region
 DELETE localhost:8080/region/adm/5
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3NDY0ODg5LCJpc3MiOiJLdW5VelRlc3QifQ.aXfuNY7VZP0pmzxtYsHMhS9PpeHx7ojt2zPSa5T-h9ZLSLLheJgk6Adz9WjmZdVpDVhgAFzosv9yYu6buLSEZw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQ3MDMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc0NzExMDMsImlzcyI6Ikt1blV6VGVzdCJ9.55ddIYz7DG4N-Fc1LjcUivLoiMPU10WdqZBmJpuxXYJ7OxW3Oo15TGN3e7QJLzkfDf6rYf-8wPMeLqv6Zxt1HQ
 
 ### getLanguage  region
 GET localhost:8080/region/adm/language?lan=RU
-Authorization: Baarer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3NDY0ODg5LCJpc3MiOiJLdW5VelRlc3QifQ.aXfuNY7VZP0pmzxtYsHMhS9PpeHx7ojt2zPSa5T-h9ZLSLLheJgk6Adz9WjmZdVpDVhgAFzosv9yYu6buLSEZw
+Authorization: Baarer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQ3MDMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc0NzExMDMsImlzcyI6Ikt1blV6VGVzdCJ9.55ddIYz7DG4N-Fc1LjcUivLoiMPU10WdqZBmJpuxXYJ7OxW3Oo15TGN3e7QJLzkfDf6rYf-8wPMeLqv6Zxt1HQ

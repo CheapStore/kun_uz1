@@ -1,18 +1,16 @@
 ### create Profile
 POST localhost:8080/profile/adm/crate
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3NDY0ODg5LCJpc3MiOiJLdW5VelRlc3QifQ.aXfuNY7VZP0pmzxtYsHMhS9PpeHx7ojt2zPSa5T-h9ZLSLLheJgk6Adz9WjmZdVpDVhgAFzosv9yYu6buLSEZw
-
-
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQ3MDMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc0NzExMDMsImlzcyI6Ikt1blV6VGVzdCJ9.55ddIYz7DG4N-Fc1LjcUivLoiMPU10WdqZBmJpuxXYJ7OxW3Oo15TGN3e7QJLzkfDf6rYf-8wPMeLqv6Zxt1HQ
 
 {
-  "password": "9797",
-  "phone": "+998945767546",
-  "name": "Akmal",
-  "surname": "Xakimov",
+  "password": "1111",
+  "phone": "+998945767555",
+  "name": "Azim",
+  "surname": "Xoliqov",
   "status": "ACTIVE",
   "role": "MODERATOR",
-  "email": "akmalxakimov97"
+  "email": "azim@gmail.com"
 
 }
 
@@ -20,7 +18,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwic
 ### update(id) Profile
 PUT localhost:8080/profile/adm/3
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3NDY0ODg5LCJpc3MiOiJLdW5VelRlc3QifQ.aXfuNY7VZP0pmzxtYsHMhS9PpeHx7ojt2zPSa5T-h9ZLSLLheJgk6Adz9WjmZdVpDVhgAFzosv9yYu6buLSEZw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQ3MDMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc0NzExMDMsImlzcyI6Ikt1blV6VGVzdCJ9.55ddIYz7DG4N-Fc1LjcUivLoiMPU10WdqZBmJpuxXYJ7OxW3Oo15TGN3e7QJLzkfDf6rYf-8wPMeLqv6Zxt1HQ
 
 {
   "role": "ADMIN",
@@ -31,7 +29,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwic
 
 ### getList(size,page) Profile
 GET localhost:8080/profile/adm/pagination?size=1&page=3
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3NDY0ODg5LCJpc3MiOiJLdW5VelRlc3QifQ.aXfuNY7VZP0pmzxtYsHMhS9PpeHx7ojt2zPSa5T-h9ZLSLLheJgk6Adz9WjmZdVpDVhgAFzosv9yYu6buLSEZw
+Authorization: Bearer
 ### filter(size,page) Profile
 POST localhost:8080/profile/filter?size=1&page=2
 Content-Type: application/json
@@ -43,7 +41,7 @@ Content-Type: application/json
 ### filter(size,page) Profile
 PUT localhost:8080/profile/adm/update
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNzg0ODksImlkIjozMiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzA3NDY0ODg5LCJpc3MiOiJLdW5VelRlc3QifQ.aXfuNY7VZP0pmzxtYsHMhS9PpeHx7ojt2zPSa5T-h9ZLSLLheJgk6Adz9WjmZdVpDVhgAFzosv9yYu6buLSEZw
+Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQ3MDMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc0NzExMDMsImlzcyI6Ikt1blV6VGVzdCJ9.55ddIYz7DG4N-Fc1LjcUivLoiMPU10WdqZBmJpuxXYJ7OxW3Oo15TGN3e7QJLzkfDf6rYf-8wPMeLqv6Zxt1HQ
 
 {
   "name": "Kim",

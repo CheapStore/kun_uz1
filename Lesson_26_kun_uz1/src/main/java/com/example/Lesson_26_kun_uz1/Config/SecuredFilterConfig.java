@@ -33,6 +33,9 @@ public class SecuredFilterConfig {
         bean.addUrlPatterns("/article/moder");
         bean.addUrlPatterns("/article/moder/*");
 
+        bean.addUrlPatterns("/article/pub");
+        bean.addUrlPatterns("/article/pub/*");
+
         bean.addUrlPatterns("/category/adm/*");
         bean.addUrlPatterns("/category/adm");
 

@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.geom.PathIterator;
 import java.net.http.HttpRequest;
+
 @Slf4j
 @RestController
 @RequestMapping("/attach")
@@ -26,8 +27,17 @@ public class AttachController {
 
     @PostMapping("/upload")
     public ResponseEntity<String> upload(@RequestParam("file") MultipartFile file) {
-        String fileName = attachService.saveToSystem(file);
-        return ResponseEntity.ok().body(fileName);
+        String filename = attachService.saveToSystem(file);
+        return ResponseEntity.ok(filename);
+    }
+
+    @PostMapping("/adm/upload")
+    public ResponseEntity<AttachDTO> upload(@RequestParam("file") MultipartFile file,
+                                            HttpServletRequest request) {
+        HttpRequestUTIL.getProfileId(request, ProfileRole.ADMIN, ProfileRole.MODERATOR,
+                ProfileRole.USER, ProfileRole.PUBLISHER);
+        AttachDTO dto = attachService.save(file);
+        return ResponseEntity.ok().body(dto);
     }
 
 
@@ -67,9 +77,9 @@ public class AttachController {
 
 
     @DeleteMapping("/adm/delete/{id}")
-    public ResponseEntity<?>delete(@PathVariable String  id,
-                                   HttpServletRequest request){
-        HttpRequestUTIL.getProfileId(request,ProfileRole.ADMIN);
+    public ResponseEntity<?> delete(@PathVariable String id,
+                                    HttpServletRequest request) {
+        HttpRequestUTIL.getProfileId(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(attachService.delete(id));
     }
 
