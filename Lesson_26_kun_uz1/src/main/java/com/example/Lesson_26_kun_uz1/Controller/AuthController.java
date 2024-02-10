@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Tag(name = "Authorization Api list", description = "Api list for Authorization")
-
+//localhost/8080/auth/login
 @Slf4j
 @RequestMapping("/auth")
 public class AuthController {
@@ -33,7 +33,6 @@ public class AuthController {
         log.info("Login {} ", auth.getEmail());
         log.warn("Login {} ", auth.getEmail());
         log.error("Login {} ", auth.getEmail());
-
         return ResponseEntity.ok(authService.auth(auth));
     }
 

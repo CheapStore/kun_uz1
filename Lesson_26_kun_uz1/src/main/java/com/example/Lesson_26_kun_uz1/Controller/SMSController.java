@@ -2,12 +2,14 @@ package com.example.Lesson_26_kun_uz1.Controller;
 
 import com.example.Lesson_26_kun_uz1.DTO.RegistirationProfileDTO;
 import com.example.Lesson_26_kun_uz1.Service.RegistrationService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/sms")
+@Slf4j
 public class SMSController {
 
     @Autowired

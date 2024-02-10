@@ -48,3 +48,41 @@ GET localhost:8080/article/ArticleSwitchId/4
 
 ### Lan(GET)
 GET localhost:8080/article/getLanguage/bceba2df-8b74-4cdf-a3c9-07e0d282e22f?lan=UZ
+
+### ArticleTypesIDGivenArticleID(GET)
+GET localhost:8080/article/ArticleByTypesAndExceptArticleId/4?articleID=12e15f36-8b1f-4f2e-a55f-d907662ea195
+
+### ArticleTypesIDGivenArticleID(GET)
+###150689bf-adfb-41b2-bff1-d948119976e1
+###12e15f36-8b1f-4f2e-a55f-d907662ea195
+###669c6f31-3f97-4625-88ef-d6c077d093e6
+GET localhost:8080/article/GetReaderArticle
+
+
+### ArticleTypesIDandRegionID(GET)
+GET localhost:8080/article/ArticleByTypesIDAndByRegionID/2?regionID=2
+
+### regionIdAndLan(GET)
+GET localhost:8080/article/regionIdAndLan/7?lan=EN&size=1&page=1
+
+### categoryIdAndLan(GET)
+GET localhost:8080/article/CategoryIDAndLan/2?lan=UZ
+
+
+### CategoryIdAndLan(GET)
+GET localhost:8080/article/categoryIdAndLan/1?lan=UZ&size=2&page=2
+
+### viewCountPlus(Put)
+PUT localhost:8080/article/viewCount/4cd82f91-c40f-44a9-9f59-03a677df788
+
+### ShareViewCountPlus(Put)
+PUT localhost:8080/article/ShareViewCount/12e15f36-8b1f-4f2e-a55f-d907662ea195
+
+### Filter(Put)
+GET localhost:8080/article/pub/filter?page=1&size=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc1NzA5NDcsImlkIjozLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNzA3NjU3MzQ3LCJpc3MiOiJLdW5VelRlc3QifQ.05YeAQhLbBgg88sNdPsEivAOdMMAVt9m71UvYP7ehdE2oe7Ktjug_4cyrbNXI7_ey8YxmC2awh3Q1pt5h9qSFA
+
+{
+  "title": "article"
+}

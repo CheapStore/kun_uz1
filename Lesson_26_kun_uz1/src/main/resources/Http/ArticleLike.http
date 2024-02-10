@@ -1,0 +1,5 @@
+### like
+PUT localhost:8080/article/Like/12e15f36-8b1f-4f2e-a55f-d907662ea195?profileID=4
+
+### Dislike
+PUT localhost:8080/article/DisLike/12e15f36-8b1f-4f2e-a55f-d907662ea195?profileID=4

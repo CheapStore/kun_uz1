@@ -1,0 +1,9 @@
+### create ArticleComment
+POST localhost:8080/articleComment/create
+Content-Type: application/json
+
+{
+  "content": "AJOYIB  Article 🥱",
+  "articleId": "4cd82f91-c40f-44a9-9f59-03a677df784"
+}
+

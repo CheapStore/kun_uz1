@@ -9,6 +9,7 @@ import com.example.Lesson_26_kun_uz1.Util.HttpRequestUTIL;
 import com.example.Lesson_26_kun_uz1.Util.JWTUtil;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/profile")
+@Slf4j
 public class ProfileController {
 
     @Autowired
@@ -67,7 +69,7 @@ public class ProfileController {
         return ResponseEntity.ok(profileService.filter(page, size, filter));
     }
 
-    @PutMapping("/adm/update")
+    @PutMapping("/adm/updateDetail")
     public ResponseEntity<?> update(@RequestBody ProfileDTO profileDTO,
                                     HttpServletRequest request) {
         Integer id = HttpRequestUTIL.getProfileId(request,ProfileRole.ADMIN);

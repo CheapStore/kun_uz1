@@ -14,4 +14,9 @@ public interface ArticleTypesRepository extends CrudRepository<ArticleTypesEntit
     List<String> findBy(Integer id,Integer size);
     @Query(value = "select ant.article_id from article_types ant where ant.types_id!=?1  order by ant.created_date desc limit ?2 ",nativeQuery = true)
     List<String> findByid(Integer id,Integer size);
+
+
+
+    @Query(value = "select ant.article_id from article_types ant where ant.types_id=?1 order by ant.created_date desc limit ?2 ",nativeQuery = true)
+    List<String> findBy1(Integer id,Integer size);
 }

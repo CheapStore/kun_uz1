@@ -6,6 +6,7 @@ import com.example.Lesson_26_kun_uz1.Enums.ProfileRole;
 import com.example.Lesson_26_kun_uz1.Service.TypesService;
 import com.example.Lesson_26_kun_uz1.Util.HttpRequestUTIL;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/types")
+@Slf4j
 public class TypesController {
 
     @Autowired

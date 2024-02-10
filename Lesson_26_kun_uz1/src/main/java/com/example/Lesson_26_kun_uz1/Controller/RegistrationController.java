@@ -4,6 +4,7 @@ import com.example.Lesson_26_kun_uz1.DTO.RegionDTO;
 import com.example.Lesson_26_kun_uz1.DTO.RegistirationProfileDTO;
 import com.example.Lesson_26_kun_uz1.Mailing;
 import com.example.Lesson_26_kun_uz1.Service.RegistrationService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import javax.mail.MessagingException;
 
 @RestController
 @RequestMapping("/registration")
+@Slf4j
 public class RegistrationController {
 //    @Autowired
 //    RegistrationService service;

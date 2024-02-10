@@ -10,6 +10,7 @@ import com.example.Lesson_26_kun_uz1.Service.RegionService;
 import com.example.Lesson_26_kun_uz1.Util.HttpRequestUTIL;
 import com.example.Lesson_26_kun_uz1.Util.JWTUtil;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +20,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/region")
+@Slf4j
 public class RegionController {
     @Autowired
     public RegionService service;
 
     @PostMapping("/adm/create")
     public ResponseEntity<RegionDTO> create(@RequestBody RegionDTO dto,
-                                               HttpServletRequest request) {
+                                            HttpServletRequest request)
+    {
         HttpRequestUTIL.getProfileId(request, ProfileRole.ADMIN);
         return ResponseEntity.ok(service.create(dto));
     }

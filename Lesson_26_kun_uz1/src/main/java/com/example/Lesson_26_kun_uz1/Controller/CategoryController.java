@@ -8,12 +8,15 @@ import com.example.Lesson_26_kun_uz1.Service.CategoryService;
 import com.example.Lesson_26_kun_uz1.Util.HttpRequestUTIL;
 import com.example.Lesson_26_kun_uz1.Util.JWTUtil;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+@Slf4j
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
