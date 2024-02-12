@@ -1,5 +1,7 @@
 ### like
-PUT localhost:8080/article/Like/12e15f36-8b1f-4f2e-a55f-d907662ea195?profileID=4
+POST localhost:8080/article/any/Like/150689bf-adfb-41b2-bff1-d948119976e1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc2NDg5MzEsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc3MzUzMzEsImlzcyI6Ikt1blV6VGVzdCJ9._xUygG-eJRmXoRMF0oMw9P5jBivF-DO1e57-D6c3ZRxbPztPPV6afolr5zdaF6OdJx4Op-K87BLqvH5DETI-TA
 
 ### Dislike
-PUT localhost:8080/article/DisLike/12e15f36-8b1f-4f2e-a55f-d907662ea195?profileID=4
+POST localhost:8080/article/any/DisLike/12e15f36-8b1f-4f2e-a55f-d907662ea195
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc2NTI3MTMsImlkIjo1LCJyb2xlIjoiVVNFUiIsImV4cCI6MTcwNzczOTExMywiaXNzIjoiS3VuVXpUZXN0In0.MddRaz-YGSaNvjG_nV50lPn3r8LuzhBdx-PyvoUIN0jUKgkKKFXLGJ7KAdK4sLwJovP0zJZdKh8grofMxmbOxg

@@ -1,7 +1,7 @@
 ### init admin
 GET localhost:808/init/admin
 
-### init login
+### init login(ADMIN)
 POST http://localhost:8080/auth/login
 Content-Type: application/json
 
@@ -9,7 +9,7 @@ Content-Type: application/json
   "email": "admin@mail.ru",
   "password": "12345"
 }
-### init login
+### init login(MODERATOR)
 POST http://localhost:8080/auth/moder
 Content-Type: application/json
 
@@ -18,11 +18,19 @@ Content-Type: application/json
   "password": "1111"
 }
 
-### init login
+### init login(PUBLISHER)
 POST http://localhost:8080/auth/moder
 Content-Type: application/json
 
 {
   "email": "sunnat@gmail.com",
   "password": "1111"
+}
+### init login(USER)
+POST http://localhost:8080/auth/moder
+Content-Type: application/json
+
+{
+  "email": "email",
+  "password": "0000"
 }

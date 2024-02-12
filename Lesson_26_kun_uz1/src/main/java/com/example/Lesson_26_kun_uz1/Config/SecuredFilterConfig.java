@@ -36,6 +36,19 @@ public class SecuredFilterConfig {
         bean.addUrlPatterns("/article/pub");
         bean.addUrlPatterns("/article/pub/*");
 
+
+        bean.addUrlPatterns("/article/any");
+        bean.addUrlPatterns("/article/any/*");
+
+        bean.addUrlPatterns("/articleComment/any");
+        bean.addUrlPatterns("/articleComment/any/*");
+
+        bean.addUrlPatterns("/articleCommentLike/any");
+        bean.addUrlPatterns("/articleCommentLike/any/*");
+
+        bean.addUrlPatterns("/articleComment/adm");
+        bean.addUrlPatterns("/articleComment/adm/*");
+
         bean.addUrlPatterns("/category/adm/*");
         bean.addUrlPatterns("/category/adm");
 

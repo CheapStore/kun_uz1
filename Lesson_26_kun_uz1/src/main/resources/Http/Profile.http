@@ -1,16 +1,16 @@
 ### create Profile
 POST localhost:8080/profile/adm/crate
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQ3MDMsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc0NzExMDMsImlzcyI6Ikt1blV6VGVzdCJ9.55ddIYz7DG4N-Fc1LjcUivLoiMPU10WdqZBmJpuxXYJ7OxW3Oo15TGN3e7QJLzkfDf6rYf-8wPMeLqv6Zxt1HQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc2NDg5MzEsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc3MzUzMzEsImlzcyI6Ikt1blV6VGVzdCJ9._xUygG-eJRmXoRMF0oMw9P5jBivF-DO1e57-D6c3ZRxbPztPPV6afolr5zdaF6OdJx4Op-K87BLqvH5DETI-TA
 
 {
-  "password": "1111",
+  "password": "0000",
   "phone": "+998945767555",
   "name": "Azim",
   "surname": "Xoliqov",
   "status": "ACTIVE",
-  "role": "MODERATOR",
-  "email": "azim@gmail.com"
+  "role": "USER",
+  "email": "email"
 
 }
 
