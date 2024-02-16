@@ -12,8 +12,8 @@ public class ArticleAndTagNameService {
     @Autowired
     private ArticleAndTagNameRepository articleAndTagNameRepository;
 
-    public void create(String articleId, List<Long> typesIdList) {
-        for (Long typeId : typesIdList) {
+    public void create(String articleId, List<Long> tagIdList) {
+        for (Long typeId : tagIdList) {
             create(articleId, typeId);
         }
     }

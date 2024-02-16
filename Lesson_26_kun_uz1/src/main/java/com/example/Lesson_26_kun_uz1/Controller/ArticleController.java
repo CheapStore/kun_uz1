@@ -1,18 +1,20 @@
 package com.example.Lesson_26_kun_uz1.Controller;
 
+import com.example.Lesson_26_kun_uz1.Config.CustomUserDetail;
 import com.example.Lesson_26_kun_uz1.DTO.*;
-import com.example.Lesson_26_kun_uz1.Entity.ArticleEntity;
 import com.example.Lesson_26_kun_uz1.Enums.Language;
 import com.example.Lesson_26_kun_uz1.Enums.ProfileRole;
+import com.example.Lesson_26_kun_uz1.Service.ArticleAndTagNameService;
 import com.example.Lesson_26_kun_uz1.Service.ArticleService;
 import com.example.Lesson_26_kun_uz1.Util.HttpRequestUTIL;
+import com.example.Lesson_26_kun_uz1.Util.SpringSecurityUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,43 +26,49 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
+    @Autowired
+    private ArticleAndTagNameService articleAndTagNameRepository;
+
     //1
     @PostMapping("/moder")
+    @PreAuthorize("hasRole('MODERATOR')")
     @Operation(summary = "create", description = "Article create")
-    public ResponseEntity<?> create(@RequestBody CreateArticleDTO dto,
-                                    HttpServletRequest request) {
-        Integer profileId = HttpRequestUTIL.getProfileId(request, ProfileRole.MODERATOR);
-        return ResponseEntity.ok(articleService.create(dto, profileId));
+    public ResponseEntity<?> create(@RequestBody CreateArticleDTO dto) {
+        Integer moderatorId = SpringSecurityUtil.getCurrentUser().getId();
+        return ResponseEntity.ok(articleService.create(dto, moderatorId));
     }
 
     //2
     @PutMapping("/moder/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     @Operation(summary = "API article update", description = "article update(id)")
     public ResponseEntity<String> update(@RequestBody UpdateArticleDTO dto,
                                          @PathVariable(value = "id") String id,
                                          HttpServletRequest request) {
-        HttpRequestUTIL.getProfileId(request, ProfileRole.MODERATOR);
+        CustomUserDetail currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(articleService.update(id, dto));
     }
 
 
     //3
     @PutMapping("/moder/updateVisible/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     @Operation(summary = "Update", description = "Update visible  (visible=false)")
     public ResponseEntity<Boolean> updateVisible(@PathVariable(value = "id") String id,
                                                  HttpServletRequest request) {
-        HttpRequestUTIL.getProfileId(request, ProfileRole.MODERATOR);
+        CustomUserDetail currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(articleService.updateVisible(id));
     }
 
 
     //4
     @PutMapping("/pub/updateStatus/{id}")
+    @PreAuthorize("hasRole('PUBLISHER')")
     @Operation(summary = "update Status", description = "update Status (PUBLISHED)")
     public ResponseEntity<Boolean> update(@PathVariable(value = "id") String id,
                                           HttpServletRequest request) {
-        Integer publisherID = HttpRequestUTIL.getProfileId(request, ProfileRole.PUBLISHER);
-        return ResponseEntity.ok(articleService.updateStatus(id, publisherID));
+        CustomUserDetail currentUser = SpringSecurityUtil.getCurrentUser();
+        return ResponseEntity.ok(articleService.updateStatus(id, currentUser.getId()));
     }
 
     //5
@@ -119,6 +127,18 @@ public class ArticleController {
         return ResponseEntity.ok(articleService.regionIdAndLan(regionID, lan, page, size));
     }
 
+
+    @PostMapping("tagName/adm")
+    public ResponseEntity<?>tagName(@RequestParam(value = "articleID")String articleId,
+                                    @RequestParam(value = "tagNameID") Long tagId)
+    {
+//        11. Get Last 4 Article By TagName (Bitta article ni eng ohirida chiqib turadi.)
+//        ArticleShortInfo
+       articleAndTagNameRepository.create(articleId,tagId);
+       return ResponseEntity.ok(true);
+    }
+
+
     //12
     @GetMapping("/CategoryIDAndLan/{id}")
     public ResponseEntity<?> regionIdAndLan(@PathVariable(value = "id") Integer categoryID,
@@ -150,13 +170,13 @@ public class ArticleController {
     //18
 
     @GetMapping("/pub/filter")
+    @PreAuthorize("hasRole('PUBLISHER')")
     public ResponseEntity<PageImpl<ArticleFilterDTO>> articleFilter(@RequestParam(value = "page", defaultValue = "1") Integer page,
                                                                     @RequestParam(value = "size", defaultValue = "1") Integer size,
                                                                     @RequestBody() ArticleFilterDTO filter,
                                                                     HttpServletRequest request
-    )
-    {
-        HttpRequestUTIL.getProfileId(request,ProfileRole.PUBLISHER);
+    ) {
+        CustomUserDetail currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(articleService.filter(page, size, filter));
     }
 

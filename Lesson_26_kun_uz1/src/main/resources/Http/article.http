@@ -1,16 +1,16 @@
 ### create article
 POST localhost:8080/article/moder
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczODQyNTQsImlkIjozLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNzA3NDcwNjU0LCJpc3MiOiJLdW5VelRlc3QifQ.lT7o7qmAsKiWmAvEBLP9MGB4bFgQPjY2NJ22x0vxzb9oJVtK3YlmuCF29Wy34wVLBRdB3ccbfWPDSK9MtvCMEA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDgwMDU2MjcsImVtYWlsIjoiYXppbUBnbWFpbC5jb20iLCJyb2xlIjoiUk9MRV9NT0RFUkFUT1IiLCJleHAiOjE3MDgwOTIwMjcsImlzcyI6Ikt1blV6VGVzdCJ9.-ftl6YtksvFiQS5F1wlkeJIQJk_8bYb4idifX2hSMct0qeOmq7fgaMo7HE0qzRH3f8A6Scv6ZifEsVOBwsYFgg
 
 {
-  "title": "article",
-  "description": "article",
-  "content": "article7",
-  "imagesId": "2e3a8f90-9d16-4ca6-aed4-1ea3531e89eb",
-  "regionId":7,
-  "cagtegoryId": 2,
-  "types": [4,7]
+  "title": "fan",
+  "description": "Fan-Texnika",
+  "content": "Ilim - fan",
+  "imagesId": "9ed417ba-1284-48df-82d9-0e86d292697b",
+  "regionId":8,
+  "cagtegoryId": 5,
+  "types": [1,2]
 }
 
 ### update article
@@ -86,3 +86,9 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc1NzA5NDcsImlkIjozLCJyb
 {
   "title": "article"
 }
+
+
+### createArticleTagName(Put)
+POST localhost:8080/article/tagName/adm?articleID=73af69ec-01ff-4947-8b9d-0dada8f9b0d9&tagNameID=1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDgwMDU5OTksImVtYWlsIjoiYWRtaW5AbWFpbC5ydSIsInJvbGUiOiJST0xFX0FETUlOIiwiZXhwIjoxNzA4MDkyMzk5LCJpc3MiOiJLdW5VelRlc3QifQ.9o6HvZeYbMswRsOx-QgjJuhy1oz8WZ-ok6EzuS-JV9uAF-uLFJA_sazVv1IZvxjpWrwjqlnV7T5qB_sI0oLsZA
+

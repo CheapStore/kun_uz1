@@ -1,0 +1,6 @@
+h/w
+1. Finish Article all
+2. ArticleLike (1,2,3)
+3. Comment(1,2,3,4,5,6,7)
+4.  ArticleLike using trigger.
+5.  Init Region, Category  using flyway file.

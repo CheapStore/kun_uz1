@@ -1,0 +1,8 @@
+### create TagName()
+POST localhost:8080/tag/adm
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDgwMDU5OTksImVtYWlsIjoiYWRtaW5AbWFpbC5ydSIsInJvbGUiOiJST0xFX0FETUlOIiwiZXhwIjoxNzA4MDkyMzk5LCJpc3MiOiJLdW5VelRlc3QifQ.9o6HvZeYbMswRsOx-QgjJuhy1oz8WZ-ok6EzuS-JV9uAF-uLFJA_sazVv1IZvxjpWrwjqlnV7T5qB_sI0oLsZA
+
+{
+  "name": "#Sport"
+}

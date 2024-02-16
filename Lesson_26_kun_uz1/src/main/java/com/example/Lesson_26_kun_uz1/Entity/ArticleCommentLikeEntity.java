@@ -11,12 +11,12 @@ import java.time.LocalDateTime;
 @Table(name = "article_comment_like")
 @Setter
 @Getter
-public class ArticleCommentLikeEntity extends BaseEntity {
+public class ArticleCommentLikeEntity {
 //    id,profile_id,comment_id,created_date,status,
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name = "profile_id")
     private Integer profileID;
@@ -34,12 +34,17 @@ public class ArticleCommentLikeEntity extends BaseEntity {
     @JoinColumn(name = "profile_id",insertable = false,updatable = false)
     private ProfileEntity profile;
 
-//    @Column(name = "create_Date")
-//    private LocalDateTime createDate;
+    @Column(name = "create_Date")
+    private LocalDateTime createDate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private LikeStatus status;
+
+
+    @Column(name = "update_Date")
+    private LocalDateTime updateDate;
+
 
 
 }

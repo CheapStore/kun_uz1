@@ -9,7 +9,7 @@ import com.example.Lesson_26_kun_uz1.Exp.AppBadException;
 import com.example.Lesson_26_kun_uz1.Repository.Profilerepository;
 import com.example.Lesson_26_kun_uz1.Repository.RegistrationRepository;
 import com.example.Lesson_26_kun_uz1.Repository.SMSHistoryRepository;
-import com.example.Lesson_26_kun_uz1.Util.RandomUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +21,7 @@ import java.util.Properties;
 import java.util.Random;
 
 @Service
+@Slf4j
 public class RegistrationService {
     @Autowired
     private RegistrationRepository repository;
@@ -40,7 +41,7 @@ public class RegistrationService {
         profileEntity.setName(registirationProfileDTO.getName());
         profileEntity.setPhone(registirationProfileDTO.getPhone());
         profileEntity.setSurname(registirationProfileDTO.getSurName());
-        profileEntity.setRole(ProfileRole.USER);
+        profileEntity.setRole(ProfileRole.ROLE_USER);
         profileEntity.setStatus(ProfileStatus.BLOCK);
         profileEntity.setCreatedDate(LocalDateTime.now());
         profileEntity.setEmail(registirationProfileDTO.getEmail());
@@ -65,7 +66,7 @@ public class RegistrationService {
         profileEntity.setName(registirationProfileDTO.getName());
         profileEntity.setPhone(registirationProfileDTO.getPhone());
         profileEntity.setSurname(registirationProfileDTO.getSurName());
-        profileEntity.setRole(ProfileRole.USER);
+        profileEntity.setRole(ProfileRole.ROLE_USER);
         profileEntity.setStatus(ProfileStatus.REGISTRATION);
         profileEntity.setCreatedDate(LocalDateTime.now());
         profileEntity.setEmail(registirationProfileDTO.getEmail());
@@ -80,11 +81,11 @@ public class RegistrationService {
         smsHistoryRepository.save(smsHistory);
 //        return "Sms jo`natildi:";
 
-        String code = "O`zbekiston Respublikasi maktabgacha va maktab ta'limi vazirligi:";
+        String code = "O`RTV Parkent Tumani (Vatan-Parvar) Jamoasi:";
         smsService.send(profileEntity.getPhone(), "" +
-                "Hurmatli Muxiddinova Dilzoda Elmurod qizi, " +
-                "sizni XTB nomidan IELTS ga bepul yoʻllanma yutib olganingiz bilan tabriklaymiz. " +
-                "Parkent XTB.", code);
+                "Hurmatli O`RINBOYEV AKBAR IXTIYOR O`G`LI, " +
+                "sizni Parkent Tumani(Vatan-Parvar MCHJ) nomidan Haydovchilik Guvohnomasiga bepul yoʻllanma yutib olganingiz bilan tabriklaymiz. " +
+                "Parkent VPMCHJ.", code);
        return null;
 
     }
@@ -132,7 +133,13 @@ public class RegistrationService {
 
 
     public String updateStatus(String kod) {
-        ProfileEntity profileEntity = profilerepository.findBySms(kod).get();
+        Optional<ProfileEntity> optional = profilerepository.findBySms(kod);
+
+        if (optional.isEmpty()){
+            log.warn("XATO!!!");
+            throw new AppBadException("bunday kod yo`q");
+        }
+        ProfileEntity profileEntity = optional.get();
         if (profileEntity.getStatus().equals(ProfileStatus.ACTIVE)){
             throw new AppBadException("ro`yxatdan o`tkansiz.");
         }

@@ -1,27 +1,27 @@
 ### create ArticleComment
 POST localhost:8080/articleComment/any/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc3MTY4MjcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc4MDMyMjcsImlzcyI6Ikt1blV6VGVzdCJ9.olB2riTrjqmsBiDIDmw0d3CpeFaKkenq4sy8yrGmor1SqRPbLH7R19ZVlZvwrq5QEghIjTadntcd1C9ae5J4YQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDgwMDU5OTksImVtYWlsIjoiYWRtaW5AbWFpbC5ydSIsInJvbGUiOiJST0xFX0FETUlOIiwiZXhwIjoxNzA4MDkyMzk5LCJpc3MiOiJLdW5VelRlc3QifQ.9o6HvZeYbMswRsOx-QgjJuhy1oz8WZ-ok6EzuS-JV9uAF-uLFJA_sazVv1IZvxjpWrwjqlnV7T5qB_sI0oLsZA
 
 {
-  "content": "GOOD Admin ...",
-  "articleId": "150689bf-adfb-41b2-bff1-d948119976e1"
+  "content": "Масъулларнинг бу топшириғини шунчаки кўзбўямачилик, тўғрироғи “галочка” учун қилинган иш дейиш мумкин. Сабаби, республикада ўнг мингга яқин маҳалла бор. ",
+  "articleId": "73af69ec-01ff-4947-8b9d-0dada8f9b0d9"
 }
 
 ### update ArticleComment
 PUT localhost:8080/articleComment/any/update/11b8d1fe-61fc-4b85-8eae-a82cd8331821
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc2NTYxODcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc3NDI1ODcsImlzcyI6Ikt1blV6VGVzdCJ9.CvH58qwKANdMP6htONGe68YysBmX6_KVeVBFiQ0xhQfiXSI16Lr4XvTele-AgnlqjGZtktUxBeUhgc7JLHdaqA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc5ODAwMDYsImVtYWlsIjoiYWRtaW5AbWFpbC5ydSIsInJvbGUiOiJST0xFX0FETUlOIiwiZXhwIjoxNzA4MDY2NDA2LCJpc3MiOiJLdW5VelRlc3QifQ.FsK6JXREQwfaSzKOcWG59wrdqL5Jjvfni_6IflgqFh5Ez9EBpRp2LPbwB88soaqboUc6MY8fA0B2fpesIg0vPQ
 
 {
-  "content": "2GOOD  Article!!! {ADMIN}",
+  "content": "2GOOD  Article!!! {ROLE_ADMIN}",
   "articleId": "11b8d1fe-61fc-4b85-8eae-a82cd8331821"
 }
 
 
 ### delete ArticleComment
 DELETE localhost:8080/articleComment/any/delete/2
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc2NTgyNDIsImlkIjozLCJyb2xlIjoiTU9ERVJBVE9SIiwiZXhwIjoxNzA3NzQ0NjQyLCJpc3MiOiJLdW5VelRlc3QifQ.eRmZ_NQaC8gbfAIQxpRpbUaNt3gcTH9X5dvyBqZV1YyGKvyiXh48NALiEBH_xl4zaFGo21WroX3TKOLJ49gvOA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc5ODAwMDYsImVtYWlsIjoiYWRtaW5AbWFpbC5ydSIsInJvbGUiOiJST0xFX0FETUlOIiwiZXhwIjoxNzA4MDY2NDA2LCJpc3MiOiJLdW5VelRlc3QifQ.FsK6JXREQwfaSzKOcWG59wrdqL5Jjvfni_6IflgqFh5Ez9EBpRp2LPbwB88soaqboUc6MY8fA0B2fpesIg0vPQ
 
 
 ### getList ArticleComment
@@ -30,12 +30,12 @@ GET localhost:8080/articleComment/getList/bceba2df-8b74-4cdf-a3c9-07e0d282e22f
 
 ### Pagination ArticleComment
 GET localhost:8080/articleComment/adm/GetCommitPagination?page=2&size=8
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc2NjgyMTEsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc3NTQ2MTEsImlzcyI6Ikt1blV6VGVzdCJ9.mFsRVzACDgNgC2STxguNW7ZIvRrdokATKV90jvucSRGLqOCQ1qC2GO9Bf-JDQT1O6WSvuORpu1O4ZykXHPUu5A
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc5ODAwMDYsImVtYWlsIjoiYWRtaW5AbWFpbC5ydSIsInJvbGUiOiJST0xFX0FETUlOIiwiZXhwIjoxNzA4MDY2NDA2LCJpc3MiOiJLdW5VelRlc3QifQ.FsK6JXREQwfaSzKOcWG59wrdqL5Jjvfni_6IflgqFh5Ez9EBpRp2LPbwB88soaqboUc6MY8fA0B2fpesIg0vPQ
 
 ### Filter(ADMIN) ArticleComment
 GET localhost:8080/articleComment/adm/commitFilter?page=1&size=3
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc3MTY4MjcsImlkIjoxLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MDc4MDMyMjcsImlzcyI6Ikt1blV6VGVzdCJ9.olB2riTrjqmsBiDIDmw0d3CpeFaKkenq4sy8yrGmor1SqRPbLH7R19ZVlZvwrq5QEghIjTadntcd1C9ae5J4YQ
+Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDc5ODAwMDYsImVtYWlsIjoiYWRtaW5AbWFpbC5ydSIsInJvbGUiOiJST0xFX0FETUlOIiwiZXhwIjoxNzA4MDY2NDA2LCJpc3MiOiJLdW5VelRlc3QifQ.FsK6JXREQwfaSzKOcWG59wrdqL5Jjvfni_6IflgqFh5Ez9EBpRp2LPbwB88soaqboUc6MY8fA0B2fpesIg0vPQ
 
 {
   "articleID": "150689bf-adfb-41b2-bff1-d948119976e1"

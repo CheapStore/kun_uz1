@@ -5,7 +5,6 @@ import com.example.Lesson_26_kun_uz1.Enums.ProfileRole;
 import com.example.Lesson_26_kun_uz1.Enums.ProfileStatus;
 import com.example.Lesson_26_kun_uz1.Repository.Profilerepository;
 import com.example.Lesson_26_kun_uz1.Util.MDUtil;
-import jakarta.persistence.Access;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +27,7 @@ import java.util.Optional;
 //        admin.setSurname("Adminjon");
 //        admin.setEmail(adminEmail);
 //        admin.setStatus(ProfileStatus.ACTIVE);
-//        admin.setRole(ProfileRole.ADMIN);
+//        admin.setRole(ProfileRole.ROLE_ADMIN);
 //        admin.setPassword(MDUtil.encode("12345"));
 //        admin.setPhone("520");
 //        profilerepository.save(admin);
@@ -54,7 +53,7 @@ public class InitService {
         admin.setSms("1111");
         admin.setStatus(ProfileStatus.ACTIVE);
         admin.setTime(LocalDateTime.now());
-        admin.setRole(ProfileRole.ADMIN);
+        admin.setRole(ProfileRole.ROLE_ADMIN);
         admin.setPhone("+998997971636");
         admin.setPassword(MDUtil.encode("12345"));
         profilerepository.save(admin);

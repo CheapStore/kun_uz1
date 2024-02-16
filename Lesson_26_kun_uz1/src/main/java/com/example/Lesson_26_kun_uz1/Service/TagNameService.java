@@ -18,18 +18,13 @@ public class TagNameService {
 
 
     public TagNameDTO create(TagNameDTO dto) {
-
         TagNameEntity entity=new TagNameEntity();
-
         entity.setTagName(dto.getName());
         entity.setCreatedDate(LocalDateTime.now());
-
         tagNameRepository.save(entity);
-
         dto.setId(entity.getId());
         dto.setCreatedDate(entity.getCreatedDate());
         dto.setName(entity.getTagName());
-
         return dto;
     }
 

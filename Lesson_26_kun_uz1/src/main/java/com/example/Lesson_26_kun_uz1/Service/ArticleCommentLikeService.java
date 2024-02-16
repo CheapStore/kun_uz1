@@ -25,21 +25,15 @@ public class ArticleCommentLikeService {
             ArticleCommentLikeEntity entity = new ArticleCommentLikeEntity();
             entity.setCommentID(commentID.longValue());
             entity.setProfileID(profileId);
-            entity.setCreatedDate(LocalDateTime.now());
+            entity.setCreateDate(LocalDateTime.now());
             entity.setStatus(LikeStatus.LIKE);
             repository.save(entity);
             return "Like successful!!!";
         }
 
         ArticleCommentLikeEntity entity = optional.get();
-        if (entity.getStatus()!=null && entity.getStatus().equals(LikeStatus.LIKE)) {
-            entity.setStatus(null);
-        } else if (entity.getStatus()!=null&&entity.getStatus().equals(LikeStatus.DISLIKE)) {
-            entity.setStatus(LikeStatus.LIKE);
-        } else {
-            entity.setStatus(LikeStatus.LIKE);
-        }
-        entity.setUpdatedDate(LocalDateTime.now());
+        entity.setStatus(LikeStatus.LIKE);
+        entity.setUpdateDate(LocalDateTime.now());
         repository.save(entity);
 
         return "Like successful!!!";
@@ -52,24 +46,30 @@ public class ArticleCommentLikeService {
             ArticleCommentLikeEntity entity = new ArticleCommentLikeEntity();
             entity.setCommentID(commentID.longValue());
             entity.setProfileID(profileId);
-            entity.setCreatedDate(LocalDateTime.now());
+            entity.setCreateDate(LocalDateTime.now());
             entity.setStatus(LikeStatus.DISLIKE);
             repository.save(entity);
             return "DisLike successful!!!";
         }
-
         ArticleCommentLikeEntity entity = optional.get();
-        if (entity.getStatus()!=null && entity.getStatus().equals(LikeStatus.LIKE)) {
-            entity.setStatus(LikeStatus.DISLIKE);
-        } else if (entity.getStatus()!=null&&entity.getStatus().equals(LikeStatus.DISLIKE)) {
-            entity.setStatus(null);
-        } else {
-            entity.setStatus(LikeStatus.DISLIKE);
-        }
+        entity.setStatus(LikeStatus.DISLIKE);
+        entity.setUpdateDate(LocalDateTime.now());
         repository.save(entity);
-        entity.setUpdatedDate(LocalDateTime.now());
-
         return "DisLike successful!!!";
 
+    }
+
+    public Boolean remove(Integer commentID, Integer profileID) {
+        Optional<ArticleCommentLikeEntity> byCommentIDAndProfileID = repository.findByCommentIDAndProfileID(commentID.longValue(), profileID);
+        if (byCommentIDAndProfileID.isEmpty()) {
+            log.warn("like wrong");
+            throw new AppBadException("like wrong");
+        }
+
+        ArticleCommentLikeEntity entity = byCommentIDAndProfileID.get();
+        entity.setStatus(null);
+        entity.setUpdateDate(LocalDateTime.now());
+        repository.save(entity);
+        return true;
     }
 }

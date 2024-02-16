@@ -4,11 +4,9 @@ import com.example.Lesson_26_kun_uz1.DTO.*;
 import com.example.Lesson_26_kun_uz1.Entity.ArticleCommentEntity;
 import com.example.Lesson_26_kun_uz1.Entity.ArticleEntity;
 import com.example.Lesson_26_kun_uz1.Entity.ProfileEntity;
-import com.example.Lesson_26_kun_uz1.Entity.RegionEntity;
 import com.example.Lesson_26_kun_uz1.Enums.ProfileRole;
 import com.example.Lesson_26_kun_uz1.Exp.AppBadException;
 import com.example.Lesson_26_kun_uz1.Repository.*;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -63,7 +61,7 @@ public class ArticleCommentService {
 
 
         for (ArticleCommentEntity entity : byArticleId) {
-            if (Objects.equals(entity.getProfileId(), profileID) || role.equals(ProfileRole.ADMIN)) {
+            if (Objects.equals(entity.getProfileId(), profileID) || role.equals(ProfileRole.ROLE_ADMIN)) {
             entity.setArticleId(dto.getArticleId());
             entity.setContent(dto.getContent());
             entity.setUpdatedDate(LocalDateTime.now());
@@ -82,7 +80,7 @@ public class ArticleCommentService {
             throw new AppBadException("delete no (commitID not fount)");
         }
         ArticleCommentEntity entity = byId.get();
-        if (Objects.equals(entity.getProfileId(), profileId)||role.equals(ProfileRole.ADMIN)) {
+        if (Objects.equals(entity.getProfileId(), profileId)||role.equals(ProfileRole.ROLE_ADMIN)) {
             articleCommentRepository.deleteById(commentID);
         }else {
             return "delete no successful(role is wrong!!!)";

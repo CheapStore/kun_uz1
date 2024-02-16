@@ -12,11 +12,14 @@ public class ArticleCommentEntity extends BaseEntity {
 
 //    id,created_date,update_date,profile_id,content,article_id,reply_id,visible
 
-    @Column(name = "content")
+    @Column(name = "content",columnDefinition = "text")
     private String content;
 
     @Column(name = "article_id")
     private String articleId;
+
+    @Column(name = "reply_id")
+    private Integer replyId;
 
     @Column(name = "profile_id")
     private Integer profileId;
@@ -24,5 +27,7 @@ public class ArticleCommentEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "article_id",insertable = false,updatable = false)
     private ArticleEntity article;
+
+
 
 }

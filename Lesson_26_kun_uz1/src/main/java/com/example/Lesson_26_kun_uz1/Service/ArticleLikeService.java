@@ -53,13 +53,7 @@ public class ArticleLikeService {
         }else {
             //Agar bosilgan bo`lsa kiradi va holatga qarab o`zgartiriladi.
             ArticleLikeEntity articleLikeEntity1 = articleLikeEntityFind.get();
-            if (articleLikeEntity1.getStatus()!=null&& articleLikeEntity1.getStatus().equals(LikeStatus.DISLIKE)){
-                articleLikeEntity1.setStatus(LikeStatus.LIKE);
-            }else if (articleLikeEntity1.getStatus()!=null && articleLikeEntity1.getStatus().equals(LikeStatus.LIKE)){
-                articleLikeEntity1.setStatus(null);
-            }else {
-                articleLikeEntity1.setStatus(LikeStatus.LIKE);
-            }
+          articleLikeEntity1.setStatus(LikeStatus.LIKE);
             likeRepository.save(articleLikeEntity1);
         }
 
@@ -79,12 +73,7 @@ public class ArticleLikeService {
             log.warn("like uchun bunday profileID yo`q ");
             throw new AppBadException("like uchun bunday profileID yo`q");
         }
-
-
         Optional<ArticleLikeEntity> articleLikeEntityFind = likeRepository.find(articleID, profileId);
-
-
-
         //hali umuman Like yoki disLike bosilmagan bo`lsa kiradi
         if (articleLikeEntityFind.isEmpty()){
             ArticleLikeEntity articleLikeEntity=new ArticleLikeEntity();
@@ -96,17 +85,20 @@ public class ArticleLikeService {
         }else {
             // Agar bosilgan bo`lsa kiradi va holatga qarab o`zgartiriladi.
             ArticleLikeEntity articleLikeEntity1 = articleLikeEntityFind.get();
-            if (articleLikeEntity1.getStatus()!=null && articleLikeEntity1.getStatus().equals(LikeStatus.LIKE)){
-                articleLikeEntity1.setStatus(LikeStatus.DISLIKE);
-            }else if (articleLikeEntity1.getStatus()!=null && articleLikeEntity1.getStatus().equals(LikeStatus.DISLIKE)){
-                articleLikeEntity1.setStatus(null);
-            }else {
-                articleLikeEntity1.setStatus(LikeStatus.DISLIKE);
-            }
+            articleLikeEntity1.setStatus(LikeStatus.DISLIKE);
             likeRepository.save(articleLikeEntity1);
-
-
         }
+        return true;
+    }
+
+    public boolean remove(String articleID, Integer id) {
+        Optional<ArticleLikeEntity> articleLikeEntity = likeRepository.find(articleID, id);
+        if (articleLikeEntity.isEmpty()){
+            throw new AppBadException("o`zi yo`q o`chirilmadi");
+        }
+        ArticleLikeEntity articleLikeEntity1 = articleLikeEntity.get();
+        articleLikeEntity1.setStatus(null);
+        likeRepository.save(articleLikeEntity1);
         return true;
     }
 }

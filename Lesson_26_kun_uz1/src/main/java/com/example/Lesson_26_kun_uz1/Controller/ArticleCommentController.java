@@ -1,5 +1,6 @@
 package com.example.Lesson_26_kun_uz1.Controller;
 
+import com.example.Lesson_26_kun_uz1.Config.CustomUserDetail;
 import com.example.Lesson_26_kun_uz1.DTO.ArticleCommitFilterDTO;
 import com.example.Lesson_26_kun_uz1.DTO.ArticleCommitFilterPaginationDTO;
 import com.example.Lesson_26_kun_uz1.DTO.ArticleCommitPaginationDTO;
@@ -7,10 +8,12 @@ import com.example.Lesson_26_kun_uz1.DTO.CreateCommentDTO;
 import com.example.Lesson_26_kun_uz1.Enums.ProfileRole;
 import com.example.Lesson_26_kun_uz1.Service.ArticleCommentService;
 import com.example.Lesson_26_kun_uz1.Util.HttpRequestUTIL;
+import com.example.Lesson_26_kun_uz1.Util.SpringSecurityUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,24 +26,26 @@ public class ArticleCommentController {
     @PostMapping("/any/create")
     public ResponseEntity<?> create(@RequestBody CreateCommentDTO dto,
                                     HttpServletRequest request) {
-        Integer profileId = HttpRequestUTIL.getProfileId(request, ProfileRole.MODERATOR, ProfileRole.ADMIN, ProfileRole.PUBLISHER, ProfileRole.USER);
-        return ResponseEntity.ok(articleCommentService.create(dto, profileId));
+     Integer profileID=SpringSecurityUtil.getCurrentUser().getId();
+        return ResponseEntity.ok(articleCommentService.create(dto,profileID));
     }
+
+
 
     @PutMapping("/any/update/{id}")
     public ResponseEntity<?> update(@PathVariable(value = "id") String articleID,
                                     @RequestBody CreateCommentDTO dto,
                                     HttpServletRequest request) {
-        Integer profileId = HttpRequestUTIL.getProfileId(request, ProfileRole.ADMIN, ProfileRole.USER, ProfileRole.PUBLISHER, ProfileRole.MODERATOR);
-        return ResponseEntity.ok(articleCommentService.update(articleID, dto, profileId));
+        CustomUserDetail currentUser = SpringSecurityUtil.getCurrentUser();
+        return ResponseEntity.ok(articleCommentService.update(articleID, dto, currentUser.getId()));
     }
 
 
     @DeleteMapping("/any/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable(value = "id") Integer commentID,
                                     HttpServletRequest request) {
-        Integer profileId = HttpRequestUTIL.getProfileId(request, ProfileRole.ADMIN, ProfileRole.USER, ProfileRole.PUBLISHER, ProfileRole.MODERATOR);
-        return ResponseEntity.ok(articleCommentService.delete(commentID, profileId));
+        CustomUserDetail currentUser = SpringSecurityUtil.getCurrentUser();
+        return ResponseEntity.ok(articleCommentService.delete(commentID, currentUser.getId()));
     }
 
 
@@ -51,20 +56,21 @@ public class ArticleCommentController {
 
 
     @GetMapping("/adm/GetCommitPagination")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<PageImpl<ArticleCommitPaginationDTO>> getCommitPagination(@RequestParam(value = "page", defaultValue = "1") Integer page,
-                                                                                    @RequestParam(value = "size", defaultValue = "1") Integer size,
-                                                                                    HttpServletRequest request) {
-        HttpRequestUTIL.getProfileId(request, ProfileRole.ADMIN);
+                                                                                    @RequestParam(value = "size", defaultValue = "1") Integer size
+                                                                                    ) {
+        CustomUserDetail currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(articleCommentService.getCommitPagination(page, size));
     }
 
 
     @GetMapping("adm/commitFilter")
+    @PreAuthorize("hasRole('ADMIN')")
     private ResponseEntity<PageImpl<ArticleCommitFilterPaginationDTO>> commitFilterPagination(@RequestParam(value = "page") Integer page,
                                                                                               @RequestParam(value = "size") Integer size,
-                                                                                              @RequestBody ArticleCommitFilterDTO dto,
-                                                                                              HttpServletRequest request) {
-        HttpRequestUTIL.getProfileId(request, ProfileRole.ADMIN);
+                                                                                              @RequestBody ArticleCommitFilterDTO dto) {
+        CustomUserDetail currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(articleCommentService.filter(dto, page, size));
     }
 

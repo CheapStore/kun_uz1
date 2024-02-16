@@ -1,1 +1,9 @@
-POST http://localhost:8080/registration/sms?kod=1234
+### post
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+Accept-Language: RU
+
+{
+  "email": "email",
+  "password": "12345"
+}

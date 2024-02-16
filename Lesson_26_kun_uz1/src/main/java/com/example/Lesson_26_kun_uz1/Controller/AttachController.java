@@ -1,9 +1,11 @@
 package com.example.Lesson_26_kun_uz1.Controller;
 
+import com.example.Lesson_26_kun_uz1.Config.CustomUserDetail;
 import com.example.Lesson_26_kun_uz1.DTO.AttachDTO;
 import com.example.Lesson_26_kun_uz1.Enums.ProfileRole;
 import com.example.Lesson_26_kun_uz1.Service.AttachService;
 import com.example.Lesson_26_kun_uz1.Util.HttpRequestUTIL;
+import com.example.Lesson_26_kun_uz1.Util.SpringSecurityUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +13,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.awt.geom.PathIterator;
-import java.net.http.HttpRequest;
 
 @Slf4j
 @RestController
@@ -32,10 +32,10 @@ public class AttachController {
     }
 
     @PostMapping("/adm/upload")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<AttachDTO> upload(@RequestParam("file") MultipartFile file,
                                             HttpServletRequest request) {
-        HttpRequestUTIL.getProfileId(request, ProfileRole.ADMIN, ProfileRole.MODERATOR,
-                ProfileRole.USER, ProfileRole.PUBLISHER);
+        CustomUserDetail currentUser = SpringSecurityUtil.getCurrentUser();
         AttachDTO dto = attachService.save(file);
         return ResponseEntity.ok().body(dto);
     }
@@ -68,18 +68,20 @@ public class AttachController {
 
 
     @GetMapping("/adm/pagination")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<PageImpl<AttachDTO>> pagination(@RequestParam Integer size,
                                                           @RequestParam Integer page,
                                                           HttpServletRequest request) {
-        HttpRequestUTIL.getProfileId(request, ProfileRole.ADMIN);
+        CustomUserDetail currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(attachService.pagination(size, page));
     }
 
 
     @DeleteMapping("/adm/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> delete(@PathVariable String id,
                                     HttpServletRequest request) {
-        HttpRequestUTIL.getProfileId(request, ProfileRole.ADMIN);
+        CustomUserDetail currentUser = SpringSecurityUtil.getCurrentUser();
         return ResponseEntity.ok(attachService.delete(id));
     }
 

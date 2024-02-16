@@ -3,28 +3,32 @@ package com.example.Lesson_26_kun_uz1.Service;
 import com.example.Lesson_26_kun_uz1.DTO.*;
 import com.example.Lesson_26_kun_uz1.Entity.EmailSendHistoryEntity;
 import com.example.Lesson_26_kun_uz1.Entity.ProfileEntity;
-import com.example.Lesson_26_kun_uz1.Entity.SMSHistory;
+import com.example.Lesson_26_kun_uz1.Enums.Language;
 import com.example.Lesson_26_kun_uz1.Enums.ProfileRole;
 import com.example.Lesson_26_kun_uz1.Enums.ProfileStatus;
 import com.example.Lesson_26_kun_uz1.Exp.AppBadException;
 import com.example.Lesson_26_kun_uz1.Repository.EmailHistoryRepository;
 import com.example.Lesson_26_kun_uz1.Repository.Profilerepository;
-import com.example.Lesson_26_kun_uz1.Repository.SMSHistoryRepository;
 import com.example.Lesson_26_kun_uz1.Util.JWTUtil;
 import com.example.Lesson_26_kun_uz1.Util.MDUtil;
 import io.jsonwebtoken.JwtException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class AuthService {
+
+    @Autowired
+    private ResourceBundleMessageSource resourceBundleMessageSource;
+
+    @Autowired
+    private ResourceBundleService resourceBundleService;
+
+
     @Autowired
     private Profilerepository profileRepository;
     @Autowired
@@ -33,11 +37,12 @@ public class AuthService {
     @Autowired
     private MailSenderService mailSender;
 
-    public ProfileDTO auth(AuthDTO auth) {
-        Optional<ProfileEntity> entity = profileRepository.findByEmailAndPassword(auth.getEmail(),MDUtil.encode(auth.getPassword()) );
+    public ProfileDTO auth(AuthDTO auth, Language language) {
+        Optional<ProfileEntity> entity = profileRepository.findByEmailAndPassword(auth.getEmail(), MDUtil.encode(auth.getPassword()));
 //        MDUtil.encode(auth.getPassword())
         if (entity.isEmpty()) {
-            throw new AppBadException("Email or password is wrong");
+            String message = resourceBundleService.getMessage("email.password.wrong", language);
+            throw new AppBadException(message);
         }
         ProfileEntity profileEntity1 = entity.get();
         if (!profileEntity1.getStatus().equals(ProfileStatus.ACTIVE)) {
@@ -50,6 +55,8 @@ public class AuthService {
         dto.setJwt(JWTUtil.encode(profileEntity.getId(), profileEntity.getRole()));
         dto.setSurname(profileEntity.getSurname());
         dto.setRole(profileEntity.getRole());
+
+        dto.setJwt(JWTUtil.encode(profileEntity.getEmail(), profileEntity.getRole()));
         return dto;
 
     }
@@ -80,7 +87,7 @@ public class AuthService {
         entity.setEmail(dto.getEmail());
         entity.setPassword(MDUtil.encode(dto.getPassword()));
         entity.setStatus(ProfileStatus.REGISTRATION);
-        entity.setRole(ProfileRole.USER);
+        entity.setRole(ProfileRole.ROLE_USER);
         entity.setPhone(dto.getPhone());
         entity.setSms(password());
         entity.setTime(LocalDateTime.MAX);

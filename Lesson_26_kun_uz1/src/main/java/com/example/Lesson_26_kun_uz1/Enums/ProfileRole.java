@@ -1,5 +1,5 @@
 package com.example.Lesson_26_kun_uz1.Enums;
 
 public enum ProfileRole {
-    USER,ADMIN,MODERATOR,PUBLISHER;
+    ROLE_USER, ROLE_ADMIN, ROLE_MODERATOR, ROLE_PUBLISHER;
 }
